@@ -21,5 +21,10 @@ Route::group(['prefix'=>'backend'],function (){
 
     Route::post('/login','Backend\AuthController@login');
 
-    
+    Route::get('/logout','Backend\AuthController@logout');
+
+    Route::group(['middleware'=>['auth']],function (){
+
+        Route::get('/',['as' => 'backend.home','uses'=>'Backend\HomeController@index']);
+    });
 });
