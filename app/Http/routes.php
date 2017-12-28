@@ -26,5 +26,15 @@ Route::group(['prefix'=>'backend'],function (){
     Route::group(['middleware'=>['auth']],function (){
 
         Route::get('/',['as' => 'backend.home','uses'=>'Backend\HomeController@index']);
+
+        Route::resource('article', 'Backend\ArticleController');
+
+        Route::resource('category', 'Backend\CategoryController');
+
+        Route::resource('tag', 'Backend\TagController');
+
+        Route::resource('navigation', 'Backend\NavigationController');
+
+        Route::get('upload', ['as' => 'backend.upload.index', 'uses' => 'Backend\UploadController@index']);
     });
 });

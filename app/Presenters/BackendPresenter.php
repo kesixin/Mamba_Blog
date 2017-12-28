@@ -33,7 +33,27 @@ class BackendPresenter
      */
     private function childrenShow($menu)
     {
+        $string='<li class="treeview %s">';
+        $string .='<a href="#">
+                    <i class="'.$menu['tree_title']['icon'].'"></i>
+                    <span>'.$menu['tree_title']['name'].'</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </a> ';
+        unset($menu['tree_title']);
+        $string.='<ul class="treeview-menu"> %s </ul>';
+        $liString='';
+        $active='';
+        foreach ($menu as $route => $m){
+            $activeString = $this->active($route);
+            if($activeString !=""){
+                $active=$activeString;
+            }
+            $liString .="<li class='".$activeString."'><a href='".route($route)."'>".$m['name']."</a></li>";
+        }
+        $string .='</li>';
+        $string = sprintf($string , $active ,$liString);
 
+        return $string;
     }
 
     /**
