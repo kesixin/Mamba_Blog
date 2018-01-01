@@ -14,4 +14,9 @@ class Article extends Model implements Transformable
 
     protected $table='articles';
 
+//    public function user()
+//    {
+//        return $this->belongsTo('App\User','user_id');
+//    }
+
 }

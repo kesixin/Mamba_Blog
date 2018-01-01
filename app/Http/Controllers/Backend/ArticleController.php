@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Request;
+
 use App\Services\ArticleService;
 
 class ArticleController extends Controller
@@ -27,7 +27,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $articles = $this->articleServer->search($request);
-        return dd($articles);
+        return view('backend.article.index',compact('articles'));
     }
 
 
