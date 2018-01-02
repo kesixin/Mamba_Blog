@@ -58,7 +58,7 @@ class TagController extends Controller
             return redirect('/backend/tag')->with('success','添加标签成功');
         }
 
-        return redirect('/backend/tag/create')->withErrors('标签添加失败');
+        return redirect(route('backend.tag.create'))->withErrors('标签添加失败');
     }
 
     /**
