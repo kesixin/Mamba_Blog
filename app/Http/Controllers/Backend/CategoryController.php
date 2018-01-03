@@ -65,14 +65,33 @@ class CategoryController extends Controller
         return view('backend.category.edit', compact('category'));
     }
 
+    /**
+     * Update a category by id
+     * @param UpdateRequest $request
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRequest $request, $id)
     {
-        $result=$this->category->update($request->all(),$id);
+        $result = $this->category->update($request->all(), $id);
 
-        if($result){
-            return redirect('backend/category')->with('success','修改成功');
+        if ($result) {
+            return redirect('backend/category')->with('success', '修改成功');
         }
 
         return redirect()->back()->withErrors('分类修改失败');
+    }
+
+    /**
+     * Destroy a category by id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        if ($this->category->delete($id)) {
+            return response()->json(['status' => 0]);
+        }
+        return response()->json(['status' => 1]);
     }
 }

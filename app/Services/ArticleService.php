@@ -6,6 +6,8 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Repositories\ArticleRepositoryEloquent;
+use App\Repositories\TagRepositoryEloquent;
+use Auth;
 
 class ArticleService
 {
@@ -38,6 +40,41 @@ class ArticleService
             'user',
             'category'
         ])->search($where);
+    }
+
+    public function store(Request $request)
+    {
+        $article = $this->article->create(array_merge($this->basicFields($request),
+            ['user_id'=>Auth::id()]
+        ));
+
+        if(!$article){
+            return redirect()->back()->withErrors('系统异常，文章发布失败');
+        }
+
+        if($request->has('tags')){
+
+        }
+
+        return redirect('backend/article')->with('success','文章添加成功');
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function basicFields(Request $request)
+    {
+        return array_merge($request->intersect([
+            'title',
+            'keyword',
+            'desc',
+            'cate_id',
+            'user_id',
+        ]),[
+            'content' =>$request->get('markdown-content'),
+            'html_content'=>$request->get('html-content')
+        ]);
     }
 
 

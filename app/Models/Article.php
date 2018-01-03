@@ -14,9 +14,19 @@ class Article extends Model implements Transformable
 
     protected $table='articles';
 
-//    public function user()
-//    {
-//        return $this->belongsTo('App\User','user_id');
-//    }
+    protected $guarded=['id'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category','cate_id');
+    }
 
 }

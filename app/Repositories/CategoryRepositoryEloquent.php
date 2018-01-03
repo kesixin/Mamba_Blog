@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CategoryRepository;
 
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
@@ -47,17 +48,60 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $category->children()->create(['name' => $input['name']]) ? true : false;
     }
 
+    /**
+     * 分类修改
+     * Update a category by id
+     * @param array $attributes
+     * @param $id
+     * @return bool
+     */
+
     public function update(array $attributes, $id)
     {
         $input['name'] = $attributes['name'];
         $parentId = $attributes['cate_id'];
 
         $category = $this->model->find($id);
-        if(!$category){
+
+        //该分类不存在
+        if (!$category) {
+            return false;
+        }
+        //修改分类名
+        //Update the cate_name by id
+        if (!parent::update($input, $id)) {
             return false;
         }
 
+        if ($parentId != 0 && $category->parent_id != $parentId) {
+
+            $parentCategory =  $this->model->find($parentId);
+
+            if(!$parentCategory){
+                return false;
+            }
+
+            if(!$category->makeChildOf($parentCategory)){
+                return false;
+            }
+
+        } elseif ($category->parent_id != $parentId && $parentId == 0) {
+            //顶级分类
+            if(!$category->makeRoot()){
+                return false;
+            }
+        }
+
         return true;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 
 }
