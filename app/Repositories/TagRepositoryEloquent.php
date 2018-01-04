@@ -28,4 +28,16 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    public function findName($tagName)
+    {
+        $tag = $this->findByField('tag_name', $tagName, ['id', 'tag_name']);
+        $data = [];
+        if (!$tag->isEmpty()) {
+            $tempData = $tag->toArray();
+            $data = $tempData[0];
+        }
+
+        return $data;
+    }
+
 }

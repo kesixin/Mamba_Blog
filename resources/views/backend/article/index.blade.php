@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            {{--@include('backend.alert.success')--}}
+            @include('backend.alert.success')
             <div class="box box-solid">
                 <div class="box-header">
                     <form class="form-inline" action="" method="get">
@@ -22,8 +22,8 @@
                         </div>
                         <div class="form-group">
                             <label for="cate_id">分类</label>&nbsp;
-                            {{--@inject('categoryPresenter', 'App\Presenters\CategoryPresenter')--}}
-                            {{--{!! $categoryPresenter->getSelect(0, '请选择', '') !!}--}}
+                            @inject('categoryPresenter', 'App\Presenters\CategoryPresenter')
+                            {!! $categoryPresenter->getSelect(0, '请选择', '') !!}
                         </div>
                         <button type="submit" class="btn btn-info">搜索</button>
                         <div class="pull-right">
@@ -45,37 +45,37 @@
                             <th>时间</th>
                             <th>操作</th>
                         </tr>
-                        {{--@if ($articles)--}}
-                            {{--@inject('articlePresenter', 'App\Presenters\ArticlePresenter')--}}
+                        @if ($articles)
+                            @inject('articlePresenter', 'App\Presenters\ArticlePresenter')
 
-                            {{--<?php $line = 1 ?>--}}
-                            {{--@foreach($articles as $article)--}}
-                                {{--<tr>--}}
-                                    {{--<td>{{ $line }}</td>--}}
-                                    {{--<td>--}}
-                                        {{--@if($article->user)--}}
-                                            {{--{{ $article->user->name }}--}}
-                                        {{--@endif--}}
-                                    {{--</td>--}}
-                                    {{--<td>{{ $articlePresenter->formatTitle($article->title) }}</td>--}}
-                                    {{--<td>{{ $article->read_count }}</td>--}}
-                                    {{--<td>{{ $article->comment_count }}</td>--}}
-                                    {{--<td>--}}
-                                        {{--@if($article->category)--}}
-                                            {{--{{ $article->category->name }}--}}
-                                        {{--@endif--}}
-                                    {{--</td>--}}
-                                    {{--<td>{{ $article->created_at }}</td>--}}
-                                    {{--<td>--}}
-                                        {{--<a href='{{ route("backend.article.edit", ["id" => $article->id]) }}' class='btn btn-info btn-xs'>--}}
-                                            {{--<i class="fa fa-pencil"></i> 修改</a>--}}
-                                        {{--<a data-href='{{ route("backend.article.destroy", ["id" => $article->id]) }}'--}}
-                                           {{--class='btn btn-danger btn-xs article-delete'><i class="fa fa-trash-o"></i> 删除</a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                                {{--<?php $line++ ?>--}}
-                            {{--@endforeach--}}
-                        {{--@endif--}}
+                            <?php $line = 1 ?>
+                            @foreach($articles as $article)
+                                <tr>
+                                    <td>{{ $line }}</td>
+                                    <td>
+                                        @if($article->user)
+                                            {{ $article->user->name }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $articlePresenter->formatTitle($article->title) }}</td>
+                                    <td>{{ $article->read_count }}</td>
+                                    <td>{{ $article->comment_count }}</td>
+                                    <td>
+                                        @if($article->category)
+                                            {{ $article->category->name }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $article->created_at }}</td>
+                                    <td>
+                                        <a href='{{ route("backend.article.edit", ["id" => $article->id]) }}' class='btn btn-info btn-xs'>
+                                            <i class="fa fa-pencil"></i> 修改</a>
+                                        <a data-href='{{ route("backend.article.destroy", ["id" => $article->id]) }}'
+                                           class='btn btn-danger btn-xs article-delete'><i class="fa fa-trash-o"></i> 删除</a>
+                                    </td>
+                                </tr>
+                                <?php $line++ ?>
+                            @endforeach
+                        @endif
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -88,4 +88,15 @@
         </div>
     </div>
 
+@endsection
+
+@section('javascript')
+    <script>
+        $(function() {
+            $(".article-delete").click(function(){
+                var url = $(this).attr('data-href');
+                Moell.ajax.delete(url);
+            });
+        });
+    </script>
 @endsection
