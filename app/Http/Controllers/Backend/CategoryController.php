@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Category\CreateRequest;
 use App\Http\Requests\Backend\Category\UpdateRequest;
 use App\Repositories\CategoryRepositoryEloquent;
+use App\Repositories\NavigationRepositoryEloquent;
 
 class CategoryController extends Controller
 {
@@ -93,5 +94,15 @@ class CategoryController extends Controller
             return response()->json(['status' => 0]);
         }
         return response()->json(['status' => 1]);
+    }
+
+    public function setNavigation(NavigationRepositoryEloquent $nav, $id)
+    {
+        $category = $this->category->find($id);
+
+        if($nav->setCategoryNav($category->id,$category->name)){
+            return redirect()->back()->with('success','设置成功');
+        }
+        return redirect()->back()->withErrors('设置失败');
     }
 }
