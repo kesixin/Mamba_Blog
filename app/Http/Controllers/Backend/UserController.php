@@ -82,6 +82,12 @@ class UserController extends Controller
         return view('backend.user.edit', compact('user'));
     }
 
+    /**
+     * @param UpdateRequest $request
+     * @param $id
+     * @param ImageUploads $imageUploads
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRequest $request, $id, ImageUploads $imageUploads)
     {
         $user = $this->user->find($id);
@@ -107,5 +113,22 @@ class UserController extends Controller
         }
 
         return redirect()->back()->withErrors('用户修改失败');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        if($this->user->delete($id)){
+            return response()->json([
+                'status'=>0
+            ]);
+        }
+
+        return response()->json([
+            'status'=>1
+        ]);
     }
 }
