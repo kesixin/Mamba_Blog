@@ -1,11 +1,17 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/1/8
+ * Time: 17:24
+ */
 
 namespace App\Http\Requests\Backend\User;
 
 
 use App\Http\Requests\Request;
 
-class CreateRequest extends Request
+class UpdateRequest extends Request
 {
 
     /**
@@ -22,10 +28,11 @@ class CreateRequest extends Request
      */
     public function rules()
     {
+        $id = $this->route('user');
         return [
             'name' => 'required|min:2',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|between:8,30'
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'between:8,30'
         ];
     }
 
@@ -40,9 +47,7 @@ class CreateRequest extends Request
             'email.required' => '登录邮箱必须填写',
             'email.email' => '请填写合法的邮箱',
             'email.unique' => '登录邮箱必须唯一',
-            'password.required' => '请填写登录密码',
             'password.between' => '请填写8-30位的密码'
         ];
     }
-
 }

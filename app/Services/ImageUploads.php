@@ -20,10 +20,19 @@ class ImageUploads
 
         $allowedExtensions = ["png", "jpg", "jpeg", "gif"];
         $check = $this->check($allowedExtensions);
-        if(!$check['status']){
+        if (!$check['status']) {
             return $check;
         }
 
+        $destPath = public_path('uploads/avatar');
+
+        $newFileName = md5(time() . rand(0, 10000)) . '.' . $this->file->getClientOriginalExtension();
+
+        if (!$this->file->move($destPath, $newFileName)) {
+            return ['status' => false, 'msg' => '系统异常，文件保存失败'];
+        }
+
+        return ['status' => true, 'fileName' => $newFileName];
 
     }
 
@@ -37,7 +46,7 @@ class ImageUploads
             return ['status' => false, 'msg' => '文件上传失败'];
         }
 
-        if (!$this->check($allowedExtensions)) {
+        if (!$this->checkAllowedExtensions($allowedExtensions)) {
             return ['status' => false, 'msg' => '非法的图片格式'];
         }
 

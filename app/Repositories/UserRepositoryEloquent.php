@@ -28,5 +28,52 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param array $input
+     * @param $avatar
+     * @return bool
+     */
+    public function store(array $input, $avatar)
+    {
+        $attr['email'] = $input['email'];
+        $attr['name'] = $input['name'];
+        $attr['password'] = bcrypt($input['password']);
+
+        if ($avatar != "") {
+            $attr['user_pic'] = $avatar;
+        }
+
+        if (parent::create($attr)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array $input
+     * @param $id
+     * @param string $avatar
+     * @return bool
+     */
+    public function update(array $input, $id, $avatar = '')
+    {
+        $attr['email'] = $input['email'];
+        $attr['name'] = $input['name'];
+        if ($input['password'] != "") {
+            $attr['password'] = bcrypt($input['password']);
+        }
+
+        if ($avatar != "") {
+            $attr['user_pic'] = $avatar;
+        }
+
+        if (parent::update($attr, $id)) {
+            return true;
+        }
+
+        return false;
+    }
+
 
 }
