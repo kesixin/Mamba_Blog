@@ -3,12 +3,15 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\Backend\Upload\DirDeleteRequest;
+use App\Http\Requests\Backend\Upload\FileDeleteRequest;
 use App\Http\Requests\Backend\Upload\MakeDirRequest;
 use App\Http\Requests\Backend\Upload\UploadStoreRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Services\UploadService;
+use Mockery\Exception;
 
 class UploadController extends Controller
 {
@@ -61,7 +64,7 @@ class UploadController extends Controller
     }
 
     /**
-     * 文件上传
+     * 文件上传保存
      * @param UploadStoreRequest $request
      * @return $this|\Illuminate\Http\RedirectResponse
      */
@@ -78,14 +81,61 @@ class UploadController extends Controller
 
 
     /**
+     * 创建目录
+     * Create a new directory
      * @param MakeDirRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function makeDir(MakeDirRequest $request)
     {
-        $path = rtrim($request->dir, '/')."/".$request->dir_name;
+        $path = rtrim($request->dir, '/') . "/" . $request->dir_name;
         if ($this->disk->exists($path)) {
             return response()->json(['status' => 1, 'msg' => '目录已存在']);
+        }
+
+        $status = [];
+        try {
+            if ($this->disk->makeDirectory($path)) {
+                $status = ['status' => 0, 'msg' => '创建成功'];
+            } else {
+                throw new Exception('目录创建失败');
+            }
+        } catch (\Exception $e) {
+            $status = ['status' => 1, 'msg' => $e->getMessage()];
+        }
+
+        return response()->json($status);
+    }
+
+    /**
+     * 删除目录
+     * Delete directory
+     * @param DirDeleteRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function dirDelete(DirDeleteRequest $request)
+    {
+        try {
+            $this->disk->deleteDirectory($request->dir);
+            return response()->json(['status' => 0]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 1, 'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * 删除文件
+     * Delete file
+     * @param FileDeleteRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function fileDelete(FileDeleteRequest $request)
+    {
+        try {
+            $this->disk->delete($request->file);
+            return response()->json(['status' => 0]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 1, 'msg' => $e->getMessage()]);
         }
     }
 
