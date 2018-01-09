@@ -46,10 +46,11 @@ class UploadService
         $list = $this->disk->directories($dir);
         $dirList = [];
         foreach ($list as $l){
-
+            $lArray=explode('/',str_replace('\\','/',$l));
+            $dirList[]=array_pop($lArray);
         }
 
-        return $list;
+        return $dirList;
 
     }
 

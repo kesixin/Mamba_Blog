@@ -28,7 +28,7 @@ class UploadController extends Controller
     {
         $dir = str_replace('\\', '/', $request->get('dir', '/'));
         $fileList = $this->uploadService->folderInfo($dir);
-        return $fileList;
+        return view('backend.upload.index',compact('fileList','dir'));
 
     }
 
