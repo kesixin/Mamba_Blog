@@ -32,6 +32,12 @@ class UploadService
         return $this->disk;
     }
 
+    /**
+     * 获取目录信息
+     * Get directory information
+     * @param $dir
+     * @return array
+     */
     public function folderInfo($dir)
     {
         $fileList = $this->fileInfo($dir);
@@ -41,6 +47,12 @@ class UploadService
         return compact("fileList","dirList");
     }
 
+    /**
+     * 获取目录列表
+     * Get directory list
+     * @param $dir
+     * @return array
+     */
     public function dirList($dir)
     {
         $list = $this->disk->directories($dir);

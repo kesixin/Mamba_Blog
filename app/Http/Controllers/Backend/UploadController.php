@@ -24,6 +24,10 @@ class UploadController extends Controller
         $disk = $this->uploadService->disk();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $dir = str_replace('\\', '/', $request->get('dir', '/'));
