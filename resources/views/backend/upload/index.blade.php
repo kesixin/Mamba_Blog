@@ -103,5 +103,27 @@
             });
         });
 
+        function mkdir() {
+            layer.open({
+                type: 1,
+                title: ['创建目录','padding-left:10px;font-size:16px;'],
+                closeBtn: 1,
+                area: '300px',
+                shadeClose: true,
+                skin: 'yourclass',
+                id: 'mkdir-form',
+                content: $("#mkdir").html(),
+                btn: ['确认创建'],
+                yes: function(index, layero){
+                    var dirName = $("#mkdir-form input[name='dir_name']").val();
+                    var dir = $("#mkdir-form input[name='dir']").val();
+                    if (!dirName) {
+                        layer.msg('目录名不能为空', {time: 1000, icon: 5});
+                    }
+                    Moell.ajax.postForm("{{ route('backend.upload.mkdir') }}", {dir_name : dirName, dir:dir}, 'POST');
+                }
+            })
+        }
+
     </script>
 @endsection

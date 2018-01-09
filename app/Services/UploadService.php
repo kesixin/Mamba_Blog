@@ -5,6 +5,7 @@ namespace App\Services;
 
 use Dflydev\ApacheMimeTypes\PhpRepository;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class UploadService
 {
@@ -42,9 +43,55 @@ class UploadService
     {
         $fileList = $this->fileInfo($dir);
 
-        $dirList =$this->dirList($dir);
+        $dirList = $this->dirList($dir);
 
-        return compact("fileList","dirList");
+        return compact("fileList", "dirList");
+    }
+
+    /**
+     * 保存上传文件
+     * Save the upload file
+     * @param $request
+     * @return array
+     */
+    public function uploadFile($request)
+    {
+        $dir = "/" . trim(str_replace('\\', '/', $request->dir), '/') . "/";
+        if (!$this->dirExists($dir)) {
+            return ['status' => false, 'msg' => '目录不存在'];
+        }
+
+        $file = $request->file('file');
+        $name = $request->name;
+
+        $fileName = $name != "" ? $name : md5(time() . rand(0, 10000));
+        $saveFile = $dir . $fileName . '.' . $file->getClientOriginalExtension();
+
+        if ($this->disk->exists($saveFile)) {
+            return ['status' => false, 'msg' => '文件名已存在或文件已存在'];
+        }
+
+
+        if($this->disk->put($saveFile,File::get($file->getPathname()))){
+            $url = route('backend.upload.index', ['dir' => $dir]);
+            return ['status' => true, 'url' => $url];
+        }
+        return ['status' => false, 'msg' => '上传失败'];
+    }
+
+    /**
+     * 判断目录是否存在
+     * Determine if the directory is exists.
+     * @param $path
+     * @return bool
+     */
+    public function dirExists($path)
+    {
+        if ($path != "/") {
+            return $this->disk->exists($path);
+        }
+
+        return true;
     }
 
     /**
@@ -57,9 +104,9 @@ class UploadService
     {
         $list = $this->disk->directories($dir);
         $dirList = [];
-        foreach ($list as $l){
-            $lArray=explode('/',str_replace('\\','/',$l));
-            $dirList[]=array_pop($lArray);
+        foreach ($list as $l) {
+            $lArray = explode('/', str_replace('\\', '/', $l));
+            $dirList[] = array_pop($lArray);
         }
 
         return $dirList;
