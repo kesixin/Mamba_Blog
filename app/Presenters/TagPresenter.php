@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/1/4
- * Time: 15:58
- */
 
 namespace App\Presenters;
-
 
 use App\Repositories\TagRepositoryEloquent;
 use Prettus\Repository\Presenter\FractalPresenter;
