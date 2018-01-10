@@ -14,8 +14,8 @@ return [
         'icp',
         'github_url',
         'weibo_url',
-        'disqus_short_name',
-        'duoshuo_short_name',
+//        'disqus_short_name',
+//        'duoshuo_short_name',
         'comment_plugin',
         'statistics_script'
     ],

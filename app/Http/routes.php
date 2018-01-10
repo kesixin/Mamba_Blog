@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/category/{id}', ['as' => 'category', 'uses' => 'CategoryController@index']);
 
+Route::get('/page/{alias}', ['as' => 'page.show', 'uses' => 'PageController@index']);
+
 Route::group(['prefix'=>'backend'],function (){
 
     Route::get('/login','Backend\AuthController@showLoginForm');
