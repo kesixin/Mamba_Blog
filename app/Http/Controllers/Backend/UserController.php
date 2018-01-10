@@ -92,7 +92,7 @@ class UserController extends Controller
     {
         $user = $this->user->find($id);
 
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('user_pic')) {
             $file = $request->file('user_pic');
 
             $upload = $imageUploads->uploadAvatar($file);
