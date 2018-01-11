@@ -21,4 +21,13 @@ class Category extends Node implements Transformable
     protected $fillable=[];
 
     protected $table='categories';
+
+    /**
+     * 文章与分类为一对一关联
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function article()
+    {
+        return $this->hasOne('App\Models\Article','cate_id','id');
+    }
 }

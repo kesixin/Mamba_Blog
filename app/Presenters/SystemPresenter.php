@@ -45,4 +45,18 @@ class SystemPresenter extends FractalPresenter
         return isset($this->list[$key]) ? $this->list[$key] : "";
     }
 
+    /**
+     * 检查是否有值
+     * @param $key
+     * @param $defaultValue
+     * @return bool
+     */
+    public function checkReturnValue($key,$defaultValue)
+    {
+        if($defaultValue !=""){
+            return $defaultValue;
+        }
+        return $this->getKeyValue($key);
+    }
+
 }

@@ -2,11 +2,11 @@
 
 @extends('layouts.app')
 
-@section('title',$systemPresenter->getKeyValue('title'))
+@section('title',$systemPresenter->checkReturnValue('title',$article->title))
 
-@section('description',$systemPresenter->getKeyValue('seo_desc'))
+@section('description',$systemPresenter->checkReturnValue('seo_desc',$article->desc))
 
-@section('keywords',$systemPresenter->getKeyValue('seo_keyword'))
+@section('keywords',$systemPresenter->checkReturnValue('seo_keyword',$article->keyword))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('editor.md/css/editormd.preview.min.css') }}">
@@ -30,16 +30,16 @@
                         </a>
                     @endif
                 </p>
-                <p class="color-white">
-                    @if($article->tag)
+                @if($article->tag)
+                    <p class="color-white">
                         <i class="glyphicon glyphicon-tags"></i>&nbsp;
                         @foreach( $article->tag as $tag )
                             <a href="{{ route('tag',['id'=>$tag->id]) }}" target="_blank">
                                 {{ $tag->tag_name }}
                             </a>
                         @endforeach
-                    @endif
-                </p>
+                    </p>
+                @endif
             </div>
         </div>
     </div>
