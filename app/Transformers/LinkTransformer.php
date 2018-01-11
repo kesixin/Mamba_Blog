@@ -1,27 +1,26 @@
 <?php
 
+
 namespace App\Transformers;
 
-use App\Models\Page;
+
+use App\Models\Link;
 use League\Fractal\TransformerAbstract;
 
-/**
- * Class PageTransformer
- * @package App\Transformers
- */
-class PageTransformer extends TransformerAbstract
+class LinkTransformer extends TransformerAbstract
 {
 
     /**
-     * @param Page $model
+     * @param Link $model
      * @return array
      */
-    public function transform(Page $model)
+    public function getTransformer(Link $model)
     {
         return [
-            'id' => (int) $model->id,
+            'id' => (int)$model->id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
     }
+
 }

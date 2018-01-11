@@ -13,7 +13,7 @@ return [
         'seo_desc',
         'icp',
         'github_url',
-        'weibo_url',
+        'qq',
 //        'disqus_short_name',
 //        'duoshuo_short_name',
         'comment_plugin',

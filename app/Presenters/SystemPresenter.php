@@ -4,6 +4,7 @@ namespace App\Presenters;
 
 
 use App\Repositories\SystemRepositoryEloquent;
+use App\Transformers\SystemTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
@@ -20,12 +21,28 @@ class SystemPresenter extends FractalPresenter
     {
         $this->system = $system;
         $this->list = $this->system->optionList();
-        parsent::construct();
+        parent::__construct();
     }
 
+    /**
+     * Get Transformer
+     * @return SystemTransformer
+     */
     public function getTransformer()
     {
         // TODO: Implement getTransformer() method.
+        return new SystemTransformer();
+    }
+
+    /**
+     * 根据key获取value
+     * Get the specified value.
+     * @param $key
+     * @return bool
+     */
+    public function getKeyValue($key)
+    {
+        return isset($this->list[$key]) ? $this->list[$key] : "";
     }
 
 }

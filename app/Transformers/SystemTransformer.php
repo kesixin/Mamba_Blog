@@ -2,26 +2,24 @@
 
 namespace App\Transformers;
 
-use App\Models\Page;
 use League\Fractal\TransformerAbstract;
+use App\Models\System;
 
-/**
- * Class PageTransformer
- * @package App\Transformers
- */
-class PageTransformer extends TransformerAbstract
+class SystemTransformer extends TransformerAbstract
 {
 
     /**
-     * @param Page $model
+     * @param System $model
      * @return array
      */
-    public function transform(Page $model)
+    public function transform(System $model)
     {
         return [
-            'id' => (int) $model->id,
+            'id ' => (int)$model->id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
     }
+
+
 }

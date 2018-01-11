@@ -4,14 +4,14 @@
 namespace App\Presenters;
 
 
-use App\Repositories\ArticleTagRepositoryEloquent;
+use App\Repositories\ArticleRepositoryEloquent;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 class ArticlePresenter extends FractalPresenter
 {
     protected $article;
 
-    public function __construct(ArticleTagRepositoryEloquent $article)
+    public function __construct(ArticleRepositoryEloquent $article)
     {
         $this->article = $article;
         parent::__construct();
@@ -37,6 +37,19 @@ class ArticlePresenter extends FractalPresenter
         } else {
             return mb_substr($title, 0, 20, 'utf-8') . "...";
         }
+    }
+
+    /**
+     * 获取热门文章
+     * @return mixed
+     */
+    public function hotArticleList()
+    {
+        $hostArticleList = $this->article
+            ->orderBy('read_count','desc')
+            ->paginate(8,['id','title','read_count']);
+
+        return $hostArticleList;
     }
 
 }

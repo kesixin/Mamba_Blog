@@ -23,6 +23,10 @@ class TagPresenter extends FractalPresenter
         return new TagTransformer();
     }
 
+    /**
+     * @param $idList
+     * @return string
+     */
     public function tagNameList($idList)
     {
         $tagName = "";
@@ -35,6 +39,15 @@ class TagPresenter extends FractalPresenter
             }
         }
         return $tagName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function tagList()
+    {
+       $tagList = $this->tag->all(['id', 'tag_name']);
+       return $tagList;
     }
 
 

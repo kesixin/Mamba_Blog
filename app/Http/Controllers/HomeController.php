@@ -24,7 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('default.home');
+        $articles = $this->article
+            ->with('category')
+            ->orderBy('sort','desc')
+            ->orderBy('id','desc')
+            ->paginate();
+        return view('default.home',compact('articles'));
     }
 
 }

@@ -65,10 +65,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="seo_desc">Weibo 地址</label>
+                            <label for="seo_desc">QQ</label>
                             <div class="row">
                                 <div class='col-md-6'>
-                                    <input type="text"  value="{{ $system['weibo_url'] }}" class='form-control' name="weibo_url" id="weibo_url" placeholder="请输入Weibo 地址">
+                                    <input type="text"  value="{{ $system['qq'] }}" class='form-control' name="qq" id="qq" placeholder="请输入qq">
                                 </div>
                             </div>
                         </div>

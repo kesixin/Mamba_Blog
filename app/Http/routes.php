@@ -11,23 +11,28 @@
 |
 */
 
-Route::get('/','HomeController@index');
+Route::get('/', 'HomeController@index');
+
+Route::get('article/{id}', ['as' => 'article', 'uses' => 'ArticleController@index']);
 
 Route::get('/category/{id}', ['as' => 'category', 'uses' => 'CategoryController@index']);
 
+Route::get('/tag/{id}', ['as' => 'tag', 'uses' => 'TagController@index']);
+
+
 Route::get('/page/{alias}', ['as' => 'page.show', 'uses' => 'PageController@index']);
 
-Route::group(['prefix'=>'backend'],function (){
+Route::group(['prefix' => 'backend'], function () {
 
-    Route::get('/login','Backend\AuthController@showLoginForm');
+    Route::get('/login', 'Backend\AuthController@showLoginForm');
 
-    Route::post('/login','Backend\AuthController@login');
+    Route::post('/login', 'Backend\AuthController@login');
 
-    Route::get('/logout','Backend\AuthController@logout');
+    Route::get('/logout', 'Backend\AuthController@logout');
 
-    Route::group(['middleware'=>['auth']],function (){
+    Route::group(['middleware' => ['auth']], function () {
 
-        Route::get('/',['as' => 'backend.home','uses'=>'Backend\HomeController@index']);
+        Route::get('/', ['as' => 'backend.home', 'uses' => 'Backend\HomeController@index']);
 
         Route::resource('article', 'Backend\ArticleController');
 

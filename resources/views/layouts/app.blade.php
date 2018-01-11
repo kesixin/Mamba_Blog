@@ -24,7 +24,7 @@
 
 </head>
 <body>
-{{--@inject('systemPresenter', 'App\Presenters\SystemPresenter')--}}
+@inject('systemPresenter', 'App\Presenters\SystemPresenter')
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -34,9 +34,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {{--<a class="navbar-brand" href="{{ url("/") }}" >{{ $systemPresenter->getKeyValue('blog_name') }}</a>--}}
-        </div>
-        {{--@include('default.navigation')--}}
+            <a class="navbar-brand" href="{{ url("/") }}" >{{ $systemPresenter->getKeyValue('blog_name') }}</a>
+    </div>
+        @include('default.navigation')
     </div>
 </nav>
 <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -54,19 +54,19 @@
             @yield('content')
         </div>
         <div class='col-md-4'>
-            {{--@include('default.author')--}}
+            @include('default.author')
 
-            {{--@include('default.tag')--}}
+            @include('default.tag')
 
-            {{--@include('default.hot')--}}
+            @include('default.hot')
 
-            {{--@include('default.link')--}}
+            @include('default.link')
         </div>
     </div>
 </div> <!-- /container -->
 
 
-{{--@include('default.footer')--}}
+@include('default.footer')
 
 <!-- jQuery -->
 <script src="{{ asset('default/js/jQuery-2.2.0.min.js') }}"></script>
@@ -76,7 +76,7 @@
 
 <script src="{{ asset('default/js/index.js') }}"></script>
 
-{{--@yield('script')--}}
+@yield('script')
 </body>
 </html>
 

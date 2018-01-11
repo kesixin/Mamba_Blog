@@ -2,21 +2,17 @@
 
 namespace App\Transformers;
 
-use App\Models\Page;
 use League\Fractal\TransformerAbstract;
+use App\Models\Navigation;
 
-/**
- * Class PageTransformer
- * @package App\Transformers
- */
-class PageTransformer extends TransformerAbstract
+class NavigationTransformer extends TransformerAbstract
 {
 
     /**
-     * @param Page $model
+     * @param Navigation $model
      * @return array
      */
-    public function transform(Page $model)
+    public function transform(Navigation $model)
     {
         return [
             'id' => (int) $model->id,
@@ -24,4 +20,5 @@ class PageTransformer extends TransformerAbstract
             'updated_at' => $model->updated_at
         ];
     }
+
 }

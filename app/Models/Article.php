@@ -42,4 +42,12 @@ class Article extends Model implements Transformable
         return $this->hasMany('App\Models\ArticleTag','article_id','id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tag()
+    {
+        return $this->belongsToMany('App\Models\Tag','article_tags','article_id','tag_id');
+    }
+
 }
