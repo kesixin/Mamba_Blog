@@ -19,8 +19,11 @@ Route::get('/category/{id}', ['as' => 'category', 'uses' => 'CategoryController@
 
 Route::get('/tag/{id}', ['as' => 'tag', 'uses' => 'TagController@index']);
 
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
 Route::get('/page/{alias}', ['as' => 'page.show', 'uses' => 'PageController@index']);
+
+Route::get('/about',['as'=>'about','uses'=>'PageController@about']);
 
 Route::group(['prefix' => 'backend'], function () {
 

@@ -96,6 +96,11 @@ class CategoryController extends Controller
         return response()->json(['status' => 1]);
     }
 
+    /**
+     * @param NavigationRepositoryEloquent $nav
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function setNavigation(NavigationRepositoryEloquent $nav, $id)
     {
         $category = $this->category->find($id);

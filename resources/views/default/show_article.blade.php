@@ -49,7 +49,9 @@
     <div class="markdown-body editormd-html-preview" style="padding:0;">
         {!! $article->html_content !!}
     </div>
-    <div id="share" class="social-share m-t-25"></div>
+    <div style="margin-top:20px;">
+        <div id="share" class="social-share"></div>
+    </div>
 @endsection
 
 @section('script')

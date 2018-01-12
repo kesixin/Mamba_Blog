@@ -39,4 +39,32 @@ class PageRepositoryEloquent extends BaseRepository implements PageRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param $alias
+     * @return mixed
+     */
+    public function aboutInfo($alias)
+    {
+        $where['link_alias'] = $alias;
+        $this->applyConditions($where);
+        return $this->first();
+    }
+
+    /**
+     * @param $alias
+     * @return bool|mixed
+     */
+    public function getAliasInfo($alias)
+    {
+        if(is_numeric($alias) && $alias>0){
+            return $this->find($alias);
+        }
+
+        if($alias !=""){
+            return $this->aboutInfo($alias);
+        }
+
+        return false;
+    }
+
 }
