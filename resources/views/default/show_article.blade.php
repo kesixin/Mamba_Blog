@@ -22,7 +22,7 @@
                 </h3>
 
                 <p class=" m-t-25 color-white">
-                    <i class="glyphicon glyphicon-calendar"></i>{{ date("Y-m-d"),strtotime($article->created_at) }}
+                    <i class="glyphicon glyphicon-calendar"></i>{{ date("Y-m-d" ,strtotime($article->created_at)) }}
                     @if($article->category)
                         <i class="glyphicon glyphicon-th-list"></i>
                         <a href="{{ route('category',['id'=>$article->cate_id]) }}" target="_blank">
@@ -36,7 +36,7 @@
                         @foreach( $article->tag as $tag )
                             <a href="{{ route('tag',['id'=>$tag->id]) }}" target="_blank">
                                 {{ $tag->tag_name }}
-                            </a>
+                            </a>&nbsp;
                         @endforeach
                     </p>
                 @endif
