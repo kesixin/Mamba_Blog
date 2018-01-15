@@ -53,4 +53,34 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
         return $this->paginate(15, ['id', 'title', 'desc', 'user_id', 'cate_id', 'read_count', 'created_at']);
 
     }
+
+    /**
+     * 查询文章发布日期（年月）
+     * @return mixed
+     */
+    public function selectDate()
+    {
+        $archives = Article::selectRaw('year(created_at)  year, month(created_at) month, count(*) count')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get();
+        return $archives;
+    }
+
+    /**
+     * 按照日期查询文章
+     * Select the articles by Date.
+     * @param $year
+     * @param $month
+     * @return mixed
+     */
+    public function selectByDate($year, $month)
+    {
+        if ($month < 10) {
+            $month = '0' . $month;
+        }
+        $search = "%" . $year . '-' . $month . "%";
+        $this->applyConditions([['created_at', 'like', $search]]); //list($field, $condition, $val) = $value;
+        return $this->get();
+    }
 }

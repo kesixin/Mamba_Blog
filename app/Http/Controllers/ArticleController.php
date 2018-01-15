@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\ArticleRepositoryEloquent;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -31,6 +32,22 @@ class ArticleController extends Controller
         $article->read_count = $article->read_count + 1;
         $article->save();
         return view('default.show_article', compact('article'));
+    }
+
+    /**
+     * 归档查询列表
+     * Select the articles by Date.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function selectDate()
+    {
+        $articles=[];
+        $archives = $this->article->selectDate();
+        foreach ($archives as $key=>$value){
+            $archives[$key]['articles'] = $this->article->selectByDate($value['year'],$value['month']);
+
+        }
+        return view('default.date_article',compact('archives'));
     }
 
 }
