@@ -94,7 +94,10 @@
             height  : 500,
             syncScrolling : "single",
             toolbarAutoFixed: false,
-            saveHTMLToTextarea : false
+            saveHTMLToTextarea : false,
+            imageUpload: true,
+            imageFormats : ["jpg","jpeg","gif","png","bmp","webp"],
+            imageUploadURL:"{{url('backend/uploadimage')}}"
         });
 
         /* 文章操作验证 */

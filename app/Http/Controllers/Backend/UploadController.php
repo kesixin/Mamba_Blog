@@ -139,10 +139,37 @@ class UploadController extends Controller
         }
     }
 
-    public function uploadimage()
+    public function uploadimage(Request $request)
     {
+        $message='';
         if (!$this->disk->exists('/article')) {
-            $message = "article 文件夹不存在";
+            $message = "article 文件夹不存在,请先创建";
+        }else{
+            $pathDir=date('Ymd');
+            if(!$this->disk->exists('/article/'.$pathDir)){
+                $this->disk->makeDirectory('/article/'.$pathDir);
+            }
+        }
+
+        if($request->file('editormd-image-file')){
+            $path="uploads/article/".$pathDir;
+            $pic = $request->file('editormd-image-file');
+            if($pic->isValid()){
+                $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
+                if($this->disk->exists($path.'/'.$newName)){
+                    $message = "文件名已存在或文件已存在";
+                }else{
+                    if($pic->move($path,$newName)){
+                        $url = asset($path.'/'.$newName);
+                    }else{
+                        $message="系统异常，文件保存失败";
+                    }
+                }
+            }else{
+                $message = "文件无效";
+            }
+        }else{
+            $message="Not File";
         }
 
         $data = array(
