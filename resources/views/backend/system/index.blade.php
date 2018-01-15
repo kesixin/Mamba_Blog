@@ -100,6 +100,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="comment_script">评论脚本</label>
+                            <div class="row">
+                                <div class='col-md-6'>
+                                    <textarea class="form-control" name="comment_script" rows="5" placeholder="请输入合法的javascript统计脚本">{{ $system['comment_script'] }}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {{ csrf_field() }}

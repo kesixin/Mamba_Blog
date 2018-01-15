@@ -17,7 +17,8 @@ return [
 //        'disqus_short_name',
 //        'duoshuo_short_name',
         'comment_plugin',
-        'statistics_script'
+        'statistics_script',
+        'comment_script'
     ],
     'menu' => [
         [
