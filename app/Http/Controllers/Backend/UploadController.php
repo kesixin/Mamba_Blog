@@ -139,4 +139,20 @@ class UploadController extends Controller
         }
     }
 
+    public function uploadimage()
+    {
+        if (!$this->disk->exists('/article')) {
+            $message = "article 文件夹不存在";
+        }
+
+        $data = array(
+            'success' => empty($message) ? 1 : 0,
+            'message' => $message,
+            'url' => !empty($url) ? $url : ''
+        );
+
+        header('Content-Type:application/json;charset=utf8');
+        exit(json_encode($data));
+    }
+
 }

@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-
+    <input type>
     <div class="row">
         <div class="col-md-12">
             @include('backend.alert.warning')
@@ -98,6 +98,8 @@
             toolbarAutoFixed: false,
             saveHTMLToTextarea: false,
             imageUpload: true,
+            imageFormats : ["jpg","jpeg","gif","png"],
+            imageUploadURL:"{{url('backend/uploadimage')}}"
         });
         /* 文章验证操作 */
         $("#article-form").bootstrapValidator({

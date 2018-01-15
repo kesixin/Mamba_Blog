@@ -71,6 +71,8 @@ Route::group(['prefix' => 'backend'], function () {
 
         Route::get('file-upload', ['as' => 'backend.upload.file-upload', 'uses' => 'Backend\UploadController@fileUpload']);
 
+        Route::post('uploadimage',['uses'=>'Backend\UploadController@uploadimage']);
+
         Route::post('file-store', ['as' => 'backend.upload.file-store', 'uses' => 'Backend\UploadController@fileStore']);
     });
 });

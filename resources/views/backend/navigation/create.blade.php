@@ -27,7 +27,7 @@
                             <label for="url">URL</label>
                             <div class="row">
                                 <div class='col-md-6'>
-                                    <input type='text' class='form-control' name="url" id='url' placeholder='请输入合法链接地址'>
+                                    <input type='text' class='form-control' name="url" id='url' placeholder='归档请使用域名/article/select'>
                                 </div>
                             </div>
                         </div>
