@@ -13,9 +13,9 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('article/select', ['uses' => 'ArticleController@selectDate']);
+Route::get('/article/select', ['uses' => 'ArticleController@selectDate']);
 
-Route::get('article/{id}', ['as' => 'article', 'uses' => 'ArticleController@index']);
+Route::get('/article/{id}', ['as' => 'article', 'uses' => 'ArticleController@index']);
 
 Route::get('/category/{id}', ['as' => 'category', 'uses' => 'CategoryController@index']);
 

@@ -37,6 +37,13 @@
     <div style="margin-top:20px;">
         <div id="share" class="social-share"></div>
     </div>
+
+    <br><br>
+    <strong>发表评论</strong>
+    @if($systemPresenter->getKeyValue('comment_script') !="")
+        <div id="SOHUCS" sid="{{ route('page.show', ['alias' => $page->link_alias]) }}" ></div>
+        {!! $systemPresenter->getKeyValue('comment_script') !!}
+    @endif
 @endsection
 
 @section('script')
