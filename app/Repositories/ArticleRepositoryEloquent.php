@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Models\Article;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\ArticleRepository;
 
@@ -79,8 +80,8 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
         if ($month < 10) {
             $month = '0' . $month;
         }
-        $search = "%" . $year . '-' . $month . "%";
-        $this->applyConditions([['created_at', 'like', $search]]); //list($field, $condition, $val) = $value;
-        return $this->get();
+
+        $articles=DB::select("select * from `articles` where date_format(created_at,'%Y%m') =".$year.$month);
+        return $articles;
     }
 }

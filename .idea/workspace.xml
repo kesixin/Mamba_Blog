@@ -12,12 +12,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/navigation/index.blade.php">
+      <file leaf-file-name="SearchController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="675">
+              <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+              <folding>
+                <element signature="e#40#87#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,9 +58,12 @@
       <file leaf-file-name="ArticleRepositoryEloquent.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Repositories/ArticleRepositoryEloquent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="43" column="16" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-              <folding />
+            <state relative-caret-position="687">
+              <caret line="84" column="24" lean-forward="false" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+              <folding>
+                <element signature="e#37#60#0#PHP" expanded="true" />
+                <marker date="1516000467610" expanded="true" signature="1866:1929" ph="select * fro... articles" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/default/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="64" />
+              <caret line="15" column="64" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="64" />
               <folding>
                 <marker date="1515666033042" expanded="true" signature="9:57" ph="..." />
                 <marker date="1515666033042" expanded="true" signature="70:83" ph="..." />
@@ -87,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
-              <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+              <caret line="40" column="7" lean-forward="false" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
               <folding>
                 <element signature="e#41#88#0#PHP" expanded="true" />
               </folding>
@@ -173,7 +178,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="90" column="32" lean-forward="true" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
+              <caret line="90" column="32" lean-forward="false" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -633,12 +638,12 @@
       <workItem from="1515680529324" duration="3836000" />
       <workItem from="1515720884997" duration="10404000" />
       <workItem from="1515848788319" duration="1383000" />
-      <workItem from="1515983017533" duration="8867000" />
+      <workItem from="1515983017533" duration="11397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213748000" />
+    <option name="totallyTimeSpent" value="216278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -898,16 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
-          <folding>
-            <element signature="e#40#87#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/PageRepositoryEloquent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1647">
@@ -957,7 +952,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="90" column="32" lean-forward="true" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
+          <caret line="90" column="32" lean-forward="false" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -999,18 +994,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="15" column="69" lean-forward="false" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/default/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="64" />
+          <caret line="15" column="64" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="64" />
           <folding>
             <marker date="1515666033042" expanded="true" signature="9:57" ph="..." />
             <marker date="1515666033042" expanded="true" signature="70:83" ph="..." />
@@ -1059,6 +1046,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" column="69" lean-forward="false" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <folding>
+            <element signature="e#40#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/default/date_article.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1086,7 +1091,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
-          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+          <caret line="40" column="7" lean-forward="false" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
           <folding>
             <element signature="e#41#88#0#PHP" expanded="true" />
           </folding>
@@ -1095,9 +1100,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/ArticleRepositoryEloquent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="43" column="16" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="687">
+          <caret line="84" column="24" lean-forward="false" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+          <folding>
+            <element signature="e#37#60#0#PHP" expanded="true" />
+            <marker date="1516000467610" expanded="true" signature="1866:1929" ph="select * fro... articles" />
+          </folding>
         </state>
       </provider>
     </entry>
