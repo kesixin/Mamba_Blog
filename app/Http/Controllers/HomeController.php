@@ -28,7 +28,7 @@ class HomeController extends Controller
             ->with('category')
             ->orderBy('sort','desc')
             ->orderBy('id','desc')
-            ->paginate();
+            ->paginate(15,['id','title','desc','created_at','read_count','cate_id']);
         return view('default.home',compact('articles'));
     }
 
