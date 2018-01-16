@@ -29,7 +29,7 @@
                     <span>
                         <i class="glyphicon glyphicon-eye-open"></i> {{ $article->read_count }}
                     </span>
-                    <span id = "{{ route('article', ['id' => $article->id]) }}" class = "cy_cmt_count" ></span>
+                    <span id = "sourceId::{{ route('article', ['id' => $article->id]) }}" class = "cy_cmt_count" ></span>
                     <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytlfCq9G">
                     </script>
                 </p>
