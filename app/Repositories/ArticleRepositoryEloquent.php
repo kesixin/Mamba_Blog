@@ -61,8 +61,8 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
      */
     public function selectDate()
     {
-        $archives = Article::selectRaw('year(created_at)  year, month(created_at) month, count(*) count')
-            ->groupBy('year', 'month')
+        $archives = Article::selectRaw('created_month, count(*) count')
+            ->groupBy('created_month')
             ->orderByRaw('min(created_at) desc')
             ->get();
         return $archives;
@@ -75,13 +75,10 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
      * @param $month
      * @return mixed
      */
-    public function selectByDate($year, $month)
+    public function selectByDate($month)
     {
-        if ($month < 10) {
-            $month = '0' . $month;
-        }
-
-        $articles=DB::select("select * from `articles` where date_format(created_at,'%Y%m') =".$year.$month);
-        return $articles;
+        $where['created_month']=$month;
+        $this->applyConditions($where);
+        return $this->get();
     }
 }

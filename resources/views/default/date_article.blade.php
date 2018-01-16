@@ -32,8 +32,8 @@
                             <div class="row">
                                 <div class="col-lg-8 cp-r animate-box">
                                     @foreach($archives as $archive)
-                                    <h2>{{$archive->year}}</h2>
-                                    <h3>{{ $archive->month }}</h3>
+                                    <h2>{{date('Y',strtotime($archive->created_month))}}</h2>
+                                    <h3>{{date('m',strtotime($archive->created_month))}}</h3>
                                         @foreach($archive->articles as $article)
                                         <ul>
                                             <li><a style="color: #428bca" href="{{ route('article',['id'=>$article->id]) }}" target="_blank">{{date('m-d',strtotime($article->created_at))}} - {{$article->title}}</a></li>

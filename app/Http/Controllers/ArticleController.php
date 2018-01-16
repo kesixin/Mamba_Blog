@@ -44,8 +44,7 @@ class ArticleController extends Controller
         $articles=[];
         $archives = $this->article->selectDate();
         foreach ($archives as $key=>$value){
-            $archives[$key]['articles'] = $this->article->selectByDate($value['year'],$value['month']);
-
+            $archives[$key]['articles'] = $this->article->selectByDate($value['created_month']);
         }
         return view('default.date_article',compact('archives'));
     }
