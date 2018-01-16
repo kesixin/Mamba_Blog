@@ -1,0 +1,11 @@
+id id序号
+article_id 文章序号
+comment_author 评论作者
+comment_to_author 回复作者
+comment_author_email 邮箱
+comment_author_url 网址
+comment_author_ip 评论id
+comment_date 日期
+comment_content 评论内容
+comment_parent 父id
+comment_level 层级

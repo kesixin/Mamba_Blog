@@ -56,7 +56,7 @@
                             <div class="row">
                                 <div class='col-md-6'>
                                     @inject('category', 'App\Presenters\CategoryPresenter')
-                                    {!! $category->getSelect(0, '请选择', '') !!}
+                                    {!! $category->getSelect(1, '请选择', '') !!}
                                 </div>
                             </div>
                         </div>

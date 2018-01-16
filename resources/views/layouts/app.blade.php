@@ -65,7 +65,6 @@
     </div>
 </div> <!-- /container -->
 
-
 @include('default.footer')
 
 <!-- jQuery -->

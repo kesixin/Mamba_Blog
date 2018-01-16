@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/player', 'HomeController@player');
+
 Route::get('/article/select', ['uses' => 'ArticleController@selectDate']);
 
 Route::get('/article/{id}', ['as' => 'article', 'uses' => 'ArticleController@index']);

@@ -32,4 +32,9 @@ class HomeController extends Controller
         return view('default.home',compact('articles'));
     }
 
+    public function player()
+    {
+        return view('default.player');
+    }
+
 }

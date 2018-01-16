@@ -1,4 +1,4 @@
-@if($articles)
+@if($articles[0]!="")
     <ol class="article-list">
         @foreach($articles as $article)
             <li>
@@ -29,6 +29,9 @@
                     <span>
                         <i class="glyphicon glyphicon-eye-open"></i> {{ $article->read_count }}
                     </span>
+                    <span id = "{{ route('article', ['id' => $article->id]) }}" class = "cy_cmt_count" ></span>
+                    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytlfCq9G">
+                    </script>
                 </p>
             </li>
             <hr/>
@@ -36,5 +39,8 @@
     </ol>
     {!! $articles->links() !!}
 @else
-    <h3>没有文章哟！！！</h3>
+    <br/><br/><br/>
+    <h2 style="color: #666;">Ooops...没找到你想要的 ：(</h2>
+    <span>您可以尝试搜点别的 或 <a href="{{ url("/") }}" >返回首页</a></span>
+    <br><br><br>
 @endif
