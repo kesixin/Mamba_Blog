@@ -12,21 +12,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="32" column="25" lean-forward="false" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+            <state relative-caret-position="660">
+              <caret line="32" column="83" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="633">
-              <caret line="30" column="83" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="83" />
+              <caret line="30" column="83" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -132,8 +132,8 @@
         <option value="$PROJECT_DIR$/app/Repositories/ArticleRepositoryEloquent.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
         <option value="$PROJECT_DIR$/resources/views/default/date_article.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
       </list>
     </option>
   </component>
@@ -434,12 +434,12 @@
       <workItem from="1516021450631" duration="137000" />
       <workItem from="1516021610452" duration="689000" />
       <workItem from="1516022455072" duration="5926000" />
-      <workItem from="1516066634633" duration="10106000" />
+      <workItem from="1516066634633" duration="10432000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244660000" />
+    <option name="totallyTimeSpent" value="244986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -942,14 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="32" column="25" lean-forward="false" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/default/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -957,14 +949,6 @@
           <folding>
             <marker date="1515666033042" expanded="true" signature="220:275" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,10 +960,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="633">
-          <caret line="30" column="83" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="83" />
+          <caret line="30" column="83" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="32" column="83" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="83" />
           <folding />
         </state>
       </provider>
