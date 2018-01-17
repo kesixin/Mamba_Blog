@@ -79,6 +79,7 @@
                                 <div class='col-md-6'>
                                     <select class='form-control' name="comment_plugin" id="comment_plugin" >
                                         <option value="">请选择</option>
+                                        <option value="LiveRe" {{ $system['comment_plugin'] == 'LiveRe' ? " selected " : "" }}>来必力</option>
                                         <option value="changyan" {{ $system['comment_plugin'] == 'changyan' ? " selected " : "" }}>畅言</option>
                                     </select>
                                 </div>

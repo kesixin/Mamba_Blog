@@ -41,7 +41,7 @@
     <br><br>
     <strong>发表评论</strong>
     @if($systemPresenter->getKeyValue('comment_script') !="")
-        <div id="SOHUCS" sid="{{ route('page.show', ['alias' => $page->link_alias]) }}" ></div>
+        {{--<div id="SOHUCS" sid="{{ route('page.show', ['alias' => $page->link_alias]) }}" ></div>--}}
         {!! $systemPresenter->getKeyValue('comment_script') !!}
     @endif
 @endsection
