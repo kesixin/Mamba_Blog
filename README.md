@@ -19,7 +19,6 @@
 
 ```
 git clone https://github.com/kesixin/new_blog.git
-
 ```
 
 ### 运行环境要求
@@ -73,7 +72,7 @@ php artisan config:cache  //配置缓存
 php artisan route:cache  //路由缓存
 ```
 
-###后台登录
+### 后台登录
 
 * 后台地址: 域名/backend
 * email：462369233@qq.com
