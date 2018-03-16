@@ -1,8 +1,8 @@
 ### 欢迎使用
-####简介
+#### 简介
 * 一个基于Laravel开发，支持markdown语法开源的简易博客。
 
-####依赖开源程序
+#### 依赖开源程序
 * LAMP
 * Laravel
 * AdminLTE
@@ -11,7 +11,7 @@
 * andersao/l5-repository
 * etrepat/baum
 
-###获取源码
+### 获取源码
 
 源码地址：[Github](https://github.com/kesixin/new_blog)
 
@@ -38,7 +38,7 @@ cd new_blog
 composer install
 ```
 
-###生成.env
+### 生成.env
 
 ```
 cp .env.example .env
