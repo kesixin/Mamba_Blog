@@ -56,7 +56,7 @@ DB_USERNAME= #数据库用户
 DB_PASSWORD= #数据库密码
 ```
 
-###数据迁移和数据填充
+### 数据迁移和数据填充
 
 ```
 php artisan migrate
