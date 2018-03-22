@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Common\MyFunction;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepositoryEloquent;
+use App\Repositories\ArticleRepositoryEloquent;
 use App\Services\CommentService;
 use Auth;
 
@@ -16,15 +18,16 @@ class CommentController extends Controller
      * @var ArticleService
      */
     protected $commentServer;
-    protected $comment;
+    protected $article;
 
     /**
      * ArticleController constructor.
      * @param ArticleService $articleService
      */
-    public function __construct(CommentService $commentService)
+    public function __construct(CommentService $commentService,ArticleRepositoryEloquent $article)
     {
         $this->commentServer = $commentService;
+        $this->article = $article;
     }
 
 
@@ -49,6 +52,10 @@ class CommentController extends Controller
         );
         $comment=$this->commentServer->store($arrData);
         if($comment){
+            $article = $this->article->find($request->article_id);
+            $article->comment_count = $article->comment_count + 1;
+            $article->save();
+
             return redirect()->back()->with('success', '发表成功');
         }else{
             return redirect()->back()->withErrors('发表失败');

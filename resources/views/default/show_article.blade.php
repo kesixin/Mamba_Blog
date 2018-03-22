@@ -149,6 +149,22 @@
     <script src="{{ asset('share.js/js/jquery.share.min.js') }}"></script>
 
     <script>
+        $('#commentModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            if (button.data('replyid')) {
+                var replyid = button.data('replyid')
+                var replyname = button.data('replyname') ? button.data('replyname') : '匿名'
+                var modal = $(this)
+                modal.find('#parent_id').val(replyid)
+                modal.find('#target_name').val(replyname)
+                modal.find('#content').attr("placeholder", "回复 @"+replyname)
+            }else {
+                var modal = $(this)
+                modal.find('#parent_id').val(0)
+                modal.find('#target_name').val('')
+                modal.find('#content').attr("placeholder", "")
+            }
+        })
         $(function(){
             $('#share').share({sites: ['qzone', 'qq', 'weibo','wechat']});
         });

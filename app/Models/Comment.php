@@ -14,7 +14,7 @@ class Comment extends Model implements Transformable
 
     protected $table='comments';
 
-    protected $fillable=['user_id', 'article_id', 'parent_id', 'content', 'name', 'email', 'website', 'avatar', 'ip', 'city'];
+    protected $fillable=['user_id', 'article_id', 'parent_id', 'content', 'name', 'email', 'website', 'avatar', 'ip', 'city','target_name'];
 
     /**
      * 获得此评论所属的文章
