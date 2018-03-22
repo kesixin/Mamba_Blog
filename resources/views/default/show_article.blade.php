@@ -11,6 +11,7 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('editor.md/css/editormd.preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('share.js/css/share.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @endsection
 
 @section('header-text')
@@ -46,6 +47,7 @@
 @endsection
 
 @section('content')
+    @include('backend.alert.success')
     <div class="markdown-body editormd-html-preview" style="padding:0;">
         {!! $article->html_content !!}
     </div>
@@ -53,11 +55,94 @@
         <div id="share" class="social-share"></div>
     </div>
     <br><br>
-    <strong>发表评论</strong>
-    @if($systemPresenter->getKeyValue('comment_script') !="")
+    <p class="z-counter">
+    <h4 style="display: inline-block;">评论 {{ $article->comment_count }}</h4>
+    <a href="" onclick="return false" style="float:right" data-toggle="modal" data-target="#commentModal"><h4><span class="glyphicon glyphicon-pencil"></span>发表评论</h4></a>
+    </p>
+    <div class="z-comments">
+        @foreach ($comments as $comment)
+            <hr id="comment{{ $comment->id }}">
+            @if( $comment->user_id == 1 )
+                <img src="/v.jpg" class="img-circle z-avatar">
+                <p class="z-name z-center-vertical">sad creeper <span class="label label-info z-label">作 者</span></p>
+            @elseif( $comment->website )
+                <p class="z-avatar-text"><?php echo $comment['avatar_text'] ? $comment['avatar_text'] : '匿' ?></p>
+                <a href="{{ $comment->website }}" target="_blank">
+                    <p class="z-name"><?php echo $comment['name'] ? $comment['name'] : '匿名' ?></p>
+                </a>
+            @else
+                <p class="z-avatar-text"><?php echo $comment['avatar_text'] ? $comment['avatar_text'] : '匿' ?></p>
+                <p class="z-name"><?php echo $comment['name'] ? $comment['name'] : '匿名' ?></p>
+            @endif
+            <p class="z-content">{{ $comment->content }}</p>
+            <p class="z-info">{{ $comment->created_at_diff }} · {{ $comment->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $comment->name }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+            <div class="z-reply">
+                @foreach( $comment->replys as $reply )
+                    @if( $reply->user_id == 1 )
+                        <img src="/v.jpg" class="img-circle z-avatar">
+                        <p class="z-name z-center-vertical">sad creeper <span class="label label-info z-label">作 者</span></p>
+                    @elseif( $reply->website )
+                        <p class="z-avatar-text"><?php echo $reply['avatar_text'] ? $reply['avatar_text'] : '匿' ?></p>
+                        <a href="{{ $reply->website }}" target="_blank">
+                            <p class="z-name"><?php echo $reply['name'] ? $reply['name'] : '匿名' ?></p>
+                        </a>
+                    @else
+                        <p class="z-avatar-text"><?php echo $reply['avatar_text'] ? $reply['avatar_text'] : '匿' ?></p>
+                        <p class="z-name"><?php echo $reply['name'] ? $reply['name'] : '匿名' ?></p>
+                    @endif
+                    <p class="z-content">回复 <b>{{ $reply->target_name }}</b>：{{ $reply->content }}</p>
+                    <p class="z-info">{{ $reply->created_at_diff }} · {{ $reply->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $reply->name }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
+    {{--<strong>发表评论</strong>--}}
+    {{--@if($systemPresenter->getKeyValue('comment_script') !="")--}}
         {{--<div id="SOHUCS" sid="{{ route('article', ['id' => $article->id]) }}" ></div>--}}
-        {!! $systemPresenter->getKeyValue('comment_script') !!}
-    @endif
+        {{--{!! $systemPresenter->getKeyValue('comment_script') !!}--}}
+    {{--@endif--}}
+
+
+    <!-- comment Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">发表评论</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('comment') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="exampleInputFile">留言</label>
+                            <textarea class="form-control" id="contents" name="contents" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">昵称</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="[选填] 怎么称呼？" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">邮箱</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="[选填] 如果有人回复，会收到邮件提醒" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">个人网站</label>
+                            <input type="text" class="form-control" id="website" name="website" placeholder="[选填] 包含 http:// 或 https:// 的完整域名" value="">
+                        </div>
+                        <input type="text" id="parent_id" name="parent_id" style="display:none">
+                        <input type="text" id="target_name" name="target_name" style="display:none">
+                        <input type="text" name="article_id" value="{{ $article->id }}" style="display:none">
+                        <input type="submit" id="commentFormBtn"  style="display:none">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('commentFormBtn').click()">发表</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')

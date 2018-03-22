@@ -113,6 +113,19 @@ class ArticleService
     }
 
     /**
+     * 更新评论数量
+     * @param $id
+     */
+    public function update_comment($id)
+    {
+        $article = $this->article->find($id);
+        $article->comment_count = $article->comment_count+1;
+        $article->update([
+            'comment_count' => $article->comment_count,
+        ]);
+    }
+
+    /**
      * 数组赋值
      * @param Request $request
      * @return array
