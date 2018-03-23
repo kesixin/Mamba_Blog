@@ -57,18 +57,16 @@ class CommentController extends Controller
             $article = $this->article->find($request->article_id);
             $article->comment_count = $article->comment_count + 1;
             $article->save();
-            if($request->comment_id){
-                $commentData=$this->commentServer->selectByParentId($request->comment_id);
-                if($commentData->email){
-                    $url=url('/article/'.$request->article_id);
-                    $this->mail($commentData->email,$url);
-                }
-            }
-
-
-            return redirect()->back()->with('success', '发表成功');
+//            if($request->comment_id){
+//                $commentData=$this->commentServer->selectByParentId($request->comment_id);
+//                if($commentData->email){
+//                    $url=url('/article/'.$request->article_id);
+//                    $this->mail($commentData->email,$url);
+//                }
+//            }
+            return json_encode(['resultCode'=>'200']);
         }else{
-            return redirect()->back()->withErrors('发表失败');
+            return json_encode(['resultCode'=>'400']);
         }
     }
 

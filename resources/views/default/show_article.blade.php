@@ -117,7 +117,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                     <h4 class="modal-title" id="myModalLabel">发表评论</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('comment') }}" method="post">
+                    <form action="" method="post" id="form1">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputFile">留言</label>
@@ -144,7 +144,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="document.getElementById('commentFormBtn').click()">发表</button>
+                    <button type="button" class="btn btn-primary" onclick="comment()">发表</button>
                 </div>
             </div>
         </div>
@@ -173,9 +173,40 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 modal.find('#content').attr("placeholder", "")
             }
         })
+
         $(function(){
             $('#share').share({sites: ['qzone', 'qq', 'weibo','wechat']});
         });
+
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
+        });
+
+        function comment() {
+            $content=$('#contents').val();
+            if($content==null || $content==''){
+                document.getElementById('commentFormBtn').click();
+                return false;
+            }else{
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: "/comment" ,//url
+                    data: $('#form1').serialize(),
+                    success: function (result) {
+                        console.log(result);//打印服务端返回的数据(调试用)
+                        if (result.resultCode == 200) {
+                            alert("SUCCESS");
+                        }else{
+
+                        }
+                    },
+                    error : function() {
+                        alert("异常！");
+                    }
+                });
+            }
+        }
     </script>
 
 @endsection
