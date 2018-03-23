@@ -29,6 +29,8 @@ Route::get('/page/{alias}', ['as' => 'page.show', 'uses' => 'PageController@inde
 
 Route::get('/about',['as'=>'about','uses'=>'PageController@about']);
 
+Route::get('/mail','ArticleController@mail');
+
 Route::post('/comment',['as'=>'comment','uses'=>'CommentController@store']);
 
 Route::group(['prefix' => 'backend'], function () {

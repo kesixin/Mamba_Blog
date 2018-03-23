@@ -5,6 +5,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepositoryEloquent;
+use App\Models\Comment;
 
 class CommentService
 {
@@ -34,6 +35,16 @@ class CommentService
         }else{
             return false;
         }
+    }
+
+    /**
+     * @param $parent_id
+     * @return mixed
+     */
+    public function selectByParentId($comment_id)
+    {
+        $comment=$comment = Comment::where('id',$comment_id)->orderBy('created_at', 'desc')->first();
+        return $comment;
     }
 
     /**

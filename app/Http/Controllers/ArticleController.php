@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Comment;
 use App\Repositories\ArticleRepositoryEloquent;
 use App\Models\Article;
 use App\Repositories\CommentRepositoryEloquent;
+use Auth;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -29,7 +32,7 @@ class ArticleController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($id)
+    public function index(Request $request,$id)
     {
         $article = $this->article->find($id);
         $article->read_count = $article->read_count + 1;
@@ -44,7 +47,20 @@ class ArticleController extends Controller
                 $replys[$j]->avatar_text = mb_substr($replys[$j]->name,0,1,'utf-8');
             }
         }
-        return view('default.show_article', compact('article','comments'));
+        $inputs = new CommentInputs;
+        if(Auth::id()){
+            $inputs->name = Auth::user()->name;
+            $inputs->email = Auth::user()->email;
+            $inputs->website =env('APP_URL');
+        }else{
+            $comment = Comment::where('ip',$request->ip())->orderBy('created_at', 'desc')->first();
+            if($comment){
+                $inputs->name=$comment->name;
+                $inputs->email=$comment->email;
+                $inputs->website=$comment->website;
+            }
+        }
+        return view('default.show_article', compact('article','comments','inputs'));
     }
 
     /**
@@ -65,4 +81,10 @@ class ArticleController extends Controller
         return view('default.date_article',compact('archives','years'));
     }
 
+}
+
+class CommentInputs{
+    public $name='';
+    public $email='';
+    public $website='';
 }

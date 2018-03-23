@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Common\MyFunction;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepositoryEloquent;
 use App\Repositories\ArticleRepositoryEloquent;
 use App\Services\CommentService;
 use Auth;
+use Mail;
 
 class CommentController extends Controller
 {
@@ -55,10 +57,30 @@ class CommentController extends Controller
             $article = $this->article->find($request->article_id);
             $article->comment_count = $article->comment_count + 1;
             $article->save();
+            if($request->comment_id){
+                $commentData=$this->commentServer->selectByParentId($request->comment_id);
+                if($commentData->email){
+                    $url=url('/article/'.$request->article_id);
+                    $this->mail($commentData->email,$url);
+                }
+            }
+
 
             return redirect()->back()->with('success', '发表成功');
         }else{
             return redirect()->back()->withErrors('发表失败');
+        }
+    }
+
+    public function mail($Mail,$url){
+        $flag = Mail::send('default/mail',['url'=>$url],function($message) use ($Mail){
+            $to=$Mail;
+            $message ->to($to)->subject('评论回复');
+        });
+        if($flag){
+            echo '发送邮件成功，请查收！';
+        }else{
+            echo '发送邮件失败，请重试！';
         }
     }
 

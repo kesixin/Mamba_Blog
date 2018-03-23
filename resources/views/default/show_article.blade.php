@@ -80,7 +80,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 <p class="z-name"><?php echo $comment['name'] ? $comment['name'] : '匿名' ?></p>
             @endif
             <p class="z-content">{{ $comment->content }}</p>
-            <p class="z-info">{{ $comment->created_at_diff }} · {{ $comment->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $comment->name }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+            <p class="z-info">{{ $comment->created_at_diff }} · {{ $comment->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $comment->name }}" data-commentid="{{ $comment->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
             <div class="z-reply">
                 @foreach( $comment->replys as $reply )
                     @if( $reply->user_id == 1 )
@@ -96,7 +96,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                         <p class="z-name"><?php echo $reply['name'] ? $reply['name'] : '匿名' ?></p>
                     @endif
                     <p class="z-content">回复 <b>{{ $reply->target_name }}</b>：{{ $reply->content }}</p>
-                    <p class="z-info">{{ $reply->created_at_diff }} · {{ $reply->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $reply->name }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+                    <p class="z-info">{{ $reply->created_at_diff }} · {{ $reply->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $reply->name }}" data-commentid="{{ $reply->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
                 @endforeach
             </div>
         @endforeach
@@ -125,18 +125,19 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">昵称</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="[选填] 怎么称呼？" value="">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="[选填] 怎么称呼？" value="{{ $inputs->name }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">邮箱</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="[选填] 如果有人回复，会收到邮件提醒" value="">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="[选填] 如果有人回复，会收到邮件提醒" value="{{ $inputs->email }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">个人网站</label>
-                            <input type="text" class="form-control" id="website" name="website" placeholder="[选填] 包含 http:// 或 https:// 的完整域名" value="">
+                            <input type="text" class="form-control" id="website" name="website" placeholder="[选填] 包含 http:// 或 https:// 的完整域名" value="{{ $inputs->website }}">
                         </div>
                         <input type="text" id="parent_id" name="parent_id" style="display:none">
                         <input type="text" id="target_name" name="target_name" style="display:none">
+                        <input type="text" id="comment_id" name="comment_id" style="display:none">
                         <input type="text" name="article_id" value="{{ $article->id }}" style="display:none">
                         <input type="submit" id="commentFormBtn"  style="display:none">
                     </form>
@@ -159,10 +160,12 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
             if (button.data('replyid')) {
                 var replyid = button.data('replyid')
                 var replyname = button.data('replyname') ? button.data('replyname') : '匿名'
+                var commentid = button.data('commentid')
                 var modal = $(this)
                 modal.find('#parent_id').val(replyid)
                 modal.find('#target_name').val(replyname)
                 modal.find('#content').attr("placeholder", "回复 @"+replyname)
+                modal.find('#comment_id').val(commentid)
             }else {
                 var modal = $(this)
                 modal.find('#parent_id').val(0)
