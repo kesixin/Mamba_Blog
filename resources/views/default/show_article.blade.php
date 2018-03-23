@@ -8,6 +8,11 @@
 
 @section('keywords',$systemPresenter->checkReturnValue('seo_keyword',$article->keyword))
 
+@inject('userPresenter','App\Presenters\UserPresenter')
+<?php
+$author = isset($user->id) ? $user : $userPresenter->getUserInfo();
+?>
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('editor.md/css/editormd.preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('share.js/css/share.min.css') }}">
@@ -63,8 +68,8 @@
         @foreach ($comments as $comment)
             <hr id="comment{{ $comment->id }}">
             @if( $comment->user_id == 1 )
-                <img src="/v.jpg" class="img-circle z-avatar">
-                <p class="z-name z-center-vertical">sad creeper <span class="label label-info z-label">作 者</span></p>
+                <img src="{{ asset('uploads/avatar')."/".$author->user_pic }}" class="img-circle z-avatar">
+                <p class="z-name z-center-vertical">{{ $author->name }} <span class="label label-info z-label">博主</span></p>
             @elseif( $comment->website )
                 <p class="z-avatar-text"><?php echo $comment['avatar_text'] ? $comment['avatar_text'] : '匿' ?></p>
                 <a href="{{ $comment->website }}" target="_blank">
@@ -79,8 +84,8 @@
             <div class="z-reply">
                 @foreach( $comment->replys as $reply )
                     @if( $reply->user_id == 1 )
-                        <img src="/v.jpg" class="img-circle z-avatar">
-                        <p class="z-name z-center-vertical">sad creeper <span class="label label-info z-label">作 者</span></p>
+                        <img src="{{ asset('uploads/avatar')."/".$author->user_pic }}" class="img-circle z-avatar">
+                        <p class="z-name z-center-vertical">{{ $author->name }} <span class="label label-info z-label">博主</span></p>
                     @elseif( $reply->website )
                         <p class="z-avatar-text"><?php echo $reply['avatar_text'] ? $reply['avatar_text'] : '匿' ?></p>
                         <a href="{{ $reply->website }}" target="_blank">
