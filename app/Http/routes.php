@@ -33,6 +33,9 @@ Route::get('/mail','ArticleController@mail');
 
 Route::post('/comment',['as'=>'comment','uses'=>'CommentController@store']);
 
+Route::get('/send',['as'=>'send','uses'=>'CommentController@send']);
+
+
 Route::group(['prefix' => 'backend'], function () {
 
     Route::get('/login', 'Backend\AuthController@showLoginForm');
@@ -46,6 +49,8 @@ Route::group(['prefix' => 'backend'], function () {
         Route::get('/', ['as' => 'backend.home', 'uses' => 'Backend\HomeController@index']);
 
         Route::resource('article', 'Backend\ArticleController');
+
+        Route::resource('comment','Backend\CommentController');
 
         Route::resource('category', 'Backend\CategoryController');
 

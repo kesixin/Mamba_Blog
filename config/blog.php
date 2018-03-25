@@ -47,6 +47,12 @@ return [
             ]
         ],
         [
+            'backend.comment.index'=>[
+                'icon'=>'fa fa-comments',
+                'name'=>'评论'
+            ]
+        ],
+        [
             'backend.tag.index' => [
                 'icon' => 'fa fa-tags',
                 'name' => '标签'

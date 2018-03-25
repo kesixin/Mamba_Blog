@@ -31,7 +31,7 @@ class CommentService
     {
         $comment=$this->comment->create($arrData);
         if($comment){
-            return true;
+            return $comment;
         }else{
             return false;
         }

@@ -20,6 +20,8 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
 @endsection
 
 @section('header-text')
+    <input type="hidden" id="action">
+    <input type="hidden" id="replyid">
     <div class="text-inner">
         <div class="row">
             <div class="col-md-12 to-animate fadeInUp animated">
@@ -62,9 +64,9 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
     <br><br>
     <p class="z-counter">
     <h4 style="display: inline-block;">评论 {{ $article->comment_count }}</h4>
-    <a href="" onclick="return false" style="float:right" data-toggle="modal" data-target="#commentModal"><h4><span class="glyphicon glyphicon-pencil"></span>发表评论</h4></a>
+    <a href="" onclick="return false" style="float:right" data-toggle="modal" data-target="#commentModal"><h4><span class="glyphicon glyphicon-pencil" ></span>发表评论</h4></a>
     </p>
-    <div class="z-comments">
+    <div class="z-comments" id="commentdiv">
         @foreach ($comments as $comment)
             <hr id="comment{{ $comment->id }}">
             @if( $comment->user_id == 1 )
@@ -80,8 +82,8 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 <p class="z-name"><?php echo $comment['name'] ? $comment['name'] : '匿名' ?></p>
             @endif
             <p class="z-content">{{ $comment->content }}</p>
-            <p class="z-info">{{ $comment->created_at_diff }} · {{ $comment->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $comment->name }}" data-commentid="{{ $comment->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
-            <div class="z-reply">
+            <p class="z-info">{{ $comment->created_at_diff }} · {{ $comment->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $comment->name }}" data-commentid="{{ $comment->id }}" id="replyid{{ $comment->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+            <div class="z-reply" id="commentid{{ $comment->id }}">
                 @foreach( $comment->replys as $reply )
                     @if( $reply->user_id == 1 )
                         <img src="{{ asset('uploads/avatar')."/".$author->user_pic }}" class="img-circle z-avatar">
@@ -96,7 +98,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                         <p class="z-name"><?php echo $reply['name'] ? $reply['name'] : '匿名' ?></p>
                     @endif
                     <p class="z-content">回复 <b>{{ $reply->target_name }}</b>：{{ $reply->content }}</p>
-                    <p class="z-info">{{ $reply->created_at_diff }} · {{ $reply->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $reply->name }}" data-commentid="{{ $reply->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
+                    <p class="z-info">{{ $reply->created_at_diff }} · {{ $reply->city }} <span data-toggle="modal" data-target="#commentModal" data-replyid="{{ $comment->id }}" data-replyname="{{ $reply->name }}" data-commentid="{{ $reply->id }}" id="replyid{{ $comment->id }}" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>
                 @endforeach
             </div>
         @endforeach
@@ -166,11 +168,14 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 modal.find('#target_name').val(replyname)
                 modal.find('#content').attr("placeholder", "回复 @"+replyname)
                 modal.find('#comment_id').val(commentid)
+                $('#action').val('reply');
+                $('#replyid').val('commentid'+replyid);
             }else {
                 var modal = $(this)
                 modal.find('#parent_id').val(0)
                 modal.find('#target_name').val('')
                 modal.find('#content').attr("placeholder", "")
+                $('#action').val('comment');
             }
         })
 
@@ -196,13 +201,34 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                     success: function (result) {
                         console.log(result);//打印服务端返回的数据(调试用)
                         if (result.resultCode == 200) {
-                            alert("SUCCESS");
+                            $('contents').val('');
+                            $('#commentModal').modal('hide');
+
+                            var action=$('#action').val();
+                            if(action=='comment'){
+                                document.all.commentdiv.insertAdjacentHTML("afterBegin",result.html);
+                            }else{
+                                var replyid=$('#replyid').val();
+                                $('#'+replyid).append(result.html);
+                            }
+                            $.ajax({
+                                type:'GET',
+                                dataType:'json',
+                                url:'/send',
+                                data:{'comment_id':result.comment_id,'article_id':result.article_id},
+                                success:function (res) {
+
+                                },
+                                error:function () {
+
+                                }
+                            });
                         }else{
 
                         }
                     },
                     error : function() {
-                        alert("异常！");
+                        alert("服务器异常，请稍后评论！");
                     }
                 });
             }

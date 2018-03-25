@@ -57,29 +57,49 @@ class CommentController extends Controller
             $article = $this->article->find($request->article_id);
             $article->comment_count = $article->comment_count + 1;
             $article->save();
-//            if($request->comment_id){
-//                $commentData=$this->commentServer->selectByParentId($request->comment_id);
-//                if($commentData->email){
-//                    $url=url('/article/'.$request->article_id);
-//                    $this->mail($commentData->email,$url);
-//                }
-//            }
-            return json_encode(['resultCode'=>'200']);
+            $html='';
+            $head =$request->name? mb_substr($request->name,0,1,'utf-8'):'匿';
+            $name=$request->name? $request->name:'匿名';
+            if($request->parent_id==0){
+
+                $html='<hr>'.'<p class="z-avatar-text">'.$head.'</p>'.
+                    '<p class="z-name">'.$name.'</p>'.'<p class="z-content">'.$request->contents.'</p>'.
+                '<p class="z-info">'.$arrData['city']. '<span data-toggle="modal" data-target="#commentModal" data-replyid="'.$comment->id.'" data-replyname="'.$arrData['name'].'" data-commentid="'.$comment->id.'" id="replyid'.$comment->id.'" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p><div class="z-reply"></div>';
+            }else{
+                $html='<p class="z-avatar-text">'.$head.'</p>'.
+                    '<p class="z-name">'.$name.'</p>'.'<p class="z-content">回复 <b>'.$request->target_name.'</b>：'. $request->contents .'</p>.'.
+                    '<p class="z-info">'.$arrData['city']. '<span data-toggle="modal" data-target="#commentModal" data-replyid="'.$request->parent_id.'" data-replyname="'.$arrData['name'].'" data-commentid="'.$comment->id.'" id="replyid'.$request->parent_id.'" class="glyphicon glyphicon-share-alt z-reply-btn"></span></p>';
+            }
+            return json_encode(['resultCode'=>'200','comment_id'=>$request->comment_id,'article_id'=>$request->article_id,'data'=>$arrData,'html'=>$html]);
         }else{
             return json_encode(['resultCode'=>'400']);
         }
     }
 
+    public function send(Request $request)
+    {
+        if($request->comment_id){
+            $commentData=$this->commentServer->selectByParentId($request->comment_id);
+            if($commentData->email){
+                $url=url('/article/'.$request->article_id);
+                $this->mail($commentData->email,$url);
+                return json_encode(['resultCode'=>'200']);
+            }else{
+                return json_encode(['resultCode'=>'400']);
+            }
+        }
+        return json_encode(['resultCode'=>'400']);
+    }
+
+    /**
+     * @param $Mail
+     * @param $url
+     */
     public function mail($Mail,$url){
         $flag = Mail::send('default/mail',['url'=>$url],function($message) use ($Mail){
             $to=$Mail;
             $message ->to($to)->subject('评论回复');
         });
-        if($flag){
-            echo '发送邮件成功，请查收！';
-        }else{
-            echo '发送邮件失败，请重试！';
-        }
     }
 
 }
