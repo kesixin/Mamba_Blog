@@ -23,7 +23,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments=$this->comment->paginate('15');
+        $comments=$this->comment->orderBy('id', 'desc')->paginate('15');
         return view('backend.comment.index',compact('comments'));
     }
 
