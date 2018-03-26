@@ -95,5 +95,7 @@ php artisan route:cache  //路由缓存
 
 ### 界面图
 
+![](https://upload-images.jianshu.io/upload_images/6673460-e2bfad0450c68de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![](https://upload-images.jianshu.io/upload_images/6673460-7e14bad3fadd39a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
