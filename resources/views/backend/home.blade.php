@@ -24,7 +24,7 @@
                 <strong>开发者信息</strong>
                 <p>Name : Mamba</p>
                 <p>Email : 462369233@qq.com</p>
-                <p>博客地址 : <a href="http://blog.com" target="_blank">Mamba</a></p>
+                <p>博客地址 : <a href="http://blog.kesixin.xin" target="_blank">Mamba</a></p>
                 <p>项目地址 : <a href="https://github.com/kesixin/new_blog" target="_blank">Github</a></p>
 
                 <strong>依赖开源程序</strong>
