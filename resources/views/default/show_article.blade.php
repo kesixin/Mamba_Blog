@@ -193,6 +193,13 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 document.getElementById('commentFormBtn').click();
                 return false;
             }else{
+                if($('#email').val()!=''){
+                    var reg1 = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}/;
+                    if(!reg1.test($('#email').val())){
+                        document.getElementById('commentFormBtn').click();
+                        return false;
+                    }
+                }
                 $.ajax({
                     type: "POST",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
