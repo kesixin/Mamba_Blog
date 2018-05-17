@@ -20,10 +20,8 @@
     @yield('style')
 
     <link rel="stylesheet" href="{{ asset('default/css/index.css') }}">
-    <link rel="stylesheet" href="https://www.overxue.com/people/hello.css" type="text/css" media="all">
-    <script src="https://www.overxue.com/people/js/jquery-1.11.3.min.js"></script>
-    <script src="https://www.overxue.com/people/js/spig.js" type="text/javascript"></script>
-    
+    <link rel="stylesheet" href="{{ asset('default/css/people.css') }}" type="text/css" media="all">
+
 </head>
 <body>
 @inject('systemPresenter', 'App\Presenters\SystemPresenter')
@@ -42,10 +40,12 @@
     </div>
 </nav>
 <!-- Main jumbotron for a primary marketing message or call to action -->
+<!--people-->
 <div id="app"></div>
-        <script type="text/javascript">
-            var isindex=true;var title="";var visitor="游客";
-        </script>
+<script type="text/javascript">
+    var isindex=true;var title="";var visitor="游客";
+</script>
+<!--end people-->
 <div class="jumbotron">
     <div class="container">
         <p>
@@ -78,8 +78,9 @@
 <!-- Bootstrap -->
 <script src="{{ asset('default/js/bootstrap.min.js') }}"></script>
 <!-- Waypoints -->
-
+<script src="{{ asset('default/js/people.js') }}"></script>
 <script src="{{ asset('default/js/index.js') }}"></script>
+
 
 <script>
     (function(){

@@ -1,0 +1,58 @@
+@media (min-width: 800px) {
+    .spig {
+        display: block;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: -200px;
+        left: 160px;
+        z-index: 9999;
+    }
+
+    #message {
+        color: #191919;
+        border: 1px solid #c4c4c4;
+        background: #ddd;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        min-height: 1em;
+        padding: 5px;
+        position: absolute;
+        bottom: 125px;
+        text-align: center;
+        width: auto !important;
+        z-index: 10000;
+        -moz-box-shadow: 0 0 15px #eeeeee;
+        -webkit-box-shadow: 0 0 15px #eeeeee;
+        border-color: #eeeeee;
+        box-shadow: 0 0 15px #eeeeee;
+        outline: none;
+    }
+    #message:before{
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 15px solid #ddd;
+    }
+
+    .mumu {
+        width: 150px;
+        height: 150px;
+        cursor: move;
+        background: url(../../uploads/people.png) no-repeat;
+        background-position: bottom;
+    }
+}
+
+@media (max-width: 800px) {
+    .spig, #message, .mumu {
+        display: none;
+    }
+}

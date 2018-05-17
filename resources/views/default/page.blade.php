@@ -24,6 +24,7 @@
     @yield('style')
 
     <link rel="stylesheet" href="{{ asset('default/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('default/css/people.css') }}" type="text/css" media="all">
 
 </head>
 <body>
@@ -48,6 +49,12 @@
 </header>
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
+<!--people-->
+<div id="app"></div>
+<script type="text/javascript">
+    var isindex=true;var title="";var visitor="游客";
+</script>
+<!--end people-->
 <div class="jumbotron">
     <div class="container">
         <p>
@@ -73,7 +80,7 @@
 <!-- Bootstrap -->
 <script src="{{ asset('default/js/bootstrap.min.js') }}"></script>
 <!-- Waypoints -->
-
+<script src="{{ asset('default/js/people.js') }}"></script>
 <script src="{{ asset('default/js/index.js') }}"></script>
 <script>
     (function(){
