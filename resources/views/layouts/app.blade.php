@@ -21,7 +21,9 @@
 
     <link rel="stylesheet" href="{{ asset('default/css/index.css') }}">
     <link rel="stylesheet" href="https://www.overxue.com/people/hello.css" type="text/css" media="all">
+    <script src="https://www.overxue.com/people/js/jquery-1.11.3.min.js"></script>
     <script src="https://www.overxue.com/people/js/spig.js" type="text/javascript"></script>
+    
 </head>
 <body>
 @inject('systemPresenter', 'App\Presenters\SystemPresenter')
