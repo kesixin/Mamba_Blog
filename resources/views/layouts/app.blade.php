@@ -20,8 +20,8 @@
     @yield('style')
 
     <link rel="stylesheet" href="{{ asset('default/css/index.css') }}">
-
-
+    <link rel="stylesheet" href="https://www.overxue.com/people/hello.css" type="text/css" media="all">
+    <script src="https://www.overxue.com/people/js/spig.js" type="text/javascript"></script>
 </head>
 <body>
 @inject('systemPresenter', 'App\Presenters\SystemPresenter')
@@ -40,6 +40,10 @@
     </div>
 </nav>
 <!-- Main jumbotron for a primary marketing message or call to action -->
+<div id="app"></div>
+        <script type="text/javascript">
+            var isindex=true;var title="";var visitor="游客";
+        </script>
 <div class="jumbotron">
     <div class="container">
         <p>
