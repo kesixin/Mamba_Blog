@@ -1,41 +1,26 @@
+@inject('userPresenter','App\Presenters\UserPresenter')
+<?php
+$author = isset($user->id) ? $user : $userPresenter->getUserInfo();
+?>
 @if($articles[0]!="")
-    <ol class="article-list">
-        @foreach($articles as $article)
-            <li>
-                <h4 class="title">
-                    <a href="{{ route('article',['id'=>$article->id]) }}" target="_blank">
-                        {{ $article->title }}
-                    </a>
-                </h4>
-                <p class="desc">
-                    {{ $article->desc }}
-                </p>
-                <p class="info">
-                    <span>
-                        <i class="glyphicon glyphicon-calendar"></i>{{ date('Y-m-d',strtotime($article->created_at)) }}
-                    </span>
-                    <span>&nbsp;</span>
-
+    @foreach($articles as $article)
+        <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+            <h3 class="blogtitle"><a href="{{ route('article',['id'=>$article->id]) }}" target="_blank">{{ $article->title }}</a></h3>
+            <span class="blogpic"><a href="{{ route('article',['id'=>$article->id]) }}" title=""><img src="{{ asset('default/images/toppic01.jpg') }}" alt=""></a></span>
+            <p class="blogtext">{{ $article->desc }} </p>
+            <div class="bloginfo">
+                <ul>
+                    <li class="author"><a>{{ $author->name }}</a></li>
                     @if($article->category)
-                        <span>
-                            <i class="glyphicon glyphicon-th-list"></i>
-                            <a href="{{ route('category', ['id' => $article->cate_id]) }}" target="_blank">
-                                {{ $article->category->name }}
-                            </a>
-                        </span>
-                        <span>&nbsp;</span>
+                    <li class="lmname"><a href="{{ route('category', ['id' => $article->cate_id]) }}">{{ $article->category->name }}</a></li>
                     @endif
-
-                    <span>
-                        <i class="glyphicon glyphicon-eye-open"></i> {{ $article->read_count }}
-                    </span>
-                    <span>&nbsp;</span>
-
-                </p>
-            </li>
-            <hr/>
-        @endforeach
-    </ol>
+                    <li class="timer">{{ date('Y-m-d',strtotime($article->created_at)) }}</li>
+                    <li class="view"><span>{{ $article->read_count }}</span> </li>
+                    <li class="comment">9999</li>
+                </ul>
+            </div>
+        </div>
+    @endforeach
     {!! $articles->links() !!}
 @else
     <br/><br/><br/>

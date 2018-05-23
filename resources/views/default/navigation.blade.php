@@ -1,21 +1,38 @@
-<div id="navbar" class="navbar-collapse collapse">
-    @inject('navPresenter', 'App\Presenters\NavigationPresenter')
-    <ul class="nav navbar-nav navbar-left">
+<div class="menu">
+    <nav class="nav" id="topnav">
+        <h1 class="logo"><a href="{{ url("/") }}">{{ $systemPresenter->getKeyValue('blog_name') }}</a></h1>
+        @inject('navPresenter', 'App\Presenters\NavigationPresenter')
         <?php $navigations = $navPresenter->getNavList(); ?>
         @if ($navigations)
             @foreach ($navigations as $navigation)
-                <li><a href="{{ $navigation->url }}"><span>{{ $navigation->name }}</span></a></li>
+                <li><a href="{{ $navigation->url }}">{{ $navigation->name }}</a> </li>
             @endforeach
         @endif
-    </ul>
-    <form class="navbar-form navbar-right" action="{{ route('search') }}" method="get">
-        <div class="input-group">
-            <input type="search" class="search-field form-control" value="" name="keyword" placeholder="Search">
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+        <!--search begin-->
+        <div id="search_bar" class="search_bar">
+            <form  id="searchform" action="[!--news.url--]e/search/index.php" method="post" name="searchform">
+                <input class="input" placeholder="想搜点什么呢..." type="text" name="keyboard" id="keyboard">
+                <input type="hidden" name="show" value="title" />
+                <input type="hidden" name="tempid" value="1" />
+                <input type="hidden" name="tbname" value="news">
+                <input type="hidden" name="Submit" value="搜索" />
+                <span class="search_ico"></span>
+            </form>
         </div>
-    </form>
+        <!--search end-->
+    </nav>
 </div>
+<!--mnav begin-->
+<div id="mnav">
+    <h2><a href="{{ url("/") }}" class="mlogo">{{ $systemPresenter->getKeyValue('blog_name') }}</a><span class="navicon"></span></h2>
+    <dl class="list_dl">
+        @inject('navPresenter', 'App\Presenters\NavigationPresenter')
+        <?php $navigations = $navPresenter->getNavList(); ?>
+        @if ($navigations)
+            @foreach ($navigations as $navigation)
+                <dt class="list_dt"> <a href="{{ $navigation->url }}">{{ $navigation->name }}</a> </dt>
+            @endforeach
+        @endif
+    </dl>
+</div>
+<!--mnav end-->

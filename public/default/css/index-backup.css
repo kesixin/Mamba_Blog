@@ -1,0 +1,99 @@
+.navbar {
+    margin-bottom: 0;
+}
+.navbar-default, .jumbotron {
+    background-color: #3D93A3;
+}
+
+.navbar-default, .jumbotron a{
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover {
+    color: white;
+    background-color: transparent;
+}
+
+
+.navbar-static-top {
+    border-width: 0 0 0;
+}
+
+.panel {
+    border-radius: 0;
+}
+
+.panel-heading {
+    background-color: #fff;
+}
+
+.panel-default>.panel-heading {
+    color: #3D93A3;
+    background-color: white;
+    border-color: #ddd
+}
+
+.color-white {
+    color:white;
+}
+
+.article-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.m-t-25 {
+    margin-top:25px;
+}
+
+
+.article-list .desc {
+    margin-top:25px;
+    word-break:break-all;
+    color:#34495e;
+}
+
+.article-list .info {
+    margin-top:25px;
+}
+.icon-github {
+    background: url('/default/icons/github.png') no-repeat;
+    background-size: 16px 16px;
+}
+
+.qq {
+    background: url('/default/icons/qq.jpg') no-repeat;
+    background-size: 16px 16px;
+}
+
+#footer {
+    border-top:1px solid #ddd;
+    margin-top:20px;
+    height:60px;
+    background-color: #fafafa;
+    background: -webkit-linear-gradient(#fafafa, #ffffff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#fafafa #ffffff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#fafafa, #ffffff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#fafafa, #ffffff); /* 标准的语法 */
+}
+
+.author .author-footer{
+    margin-top:20px;
+}
+
+.author .author-avatar {
+    max-width:150px;
+}
+
+
+a {
+    color: #34495e;
+}
