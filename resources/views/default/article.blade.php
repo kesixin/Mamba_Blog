@@ -16,7 +16,7 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                     @endif
                     <li class="timer">{{ date('Y-m-d',strtotime($article->created_at)) }}</li>
                     <li class="view"><span>{{ $article->read_count }}</span> </li>
-                    <li class="comment">9999</li>
+                    <li class="comment">{{ $article->comment_count }}</li>
                 </ul>
             </div>
         </div>

@@ -1,48 +1,24 @@
-<div class="panel panel-default author">
+<div class="guanzhu" id="float">
     @inject('userPresenter','App\Presenters\UserPresenter')
     <?php
-        $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
+    $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
     ?>
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ $author->name }}</h3>
-    </div>
-    <div class="panel-body">
-        <div class="row text-center">
-            <img src="{{ asset('uploads/avatar')."/".$author->user_pic }}" class="img-circle author-avatar" alt="User Image">
-        </div>
-        <div class="row text-center author-footer">
-            <?php
-                $github_url = '';
-                $qq = '';
-                if(!isset($user->id)||$user->id == 1){
-                    $github_url = $systemPresenter->getKeyValue('github_url');
-                    $qq = $systemPresenter->getKeyValue('qq');
-                }
-            ?>
-
-                @if ($github_url != "")
-                    <span class="icon-github" style="padding-left:20px;">
-                    <a href='{{ $github_url }}' target="_blank">GitHub</a>
-                </span>
-                @endif
-
-               @if($qq != "")
-                    <span class="qq" style="padding-left:20px;margin-left:10px;">
-                        {{ $qq }}
-                    </span>
-                @endif
-        </div>
-    </div>
-</div>
-
-<div class="guanzhu" id="float">
-    <h2 class="hometitle">关注我们 么么哒！</h2>
+    <h2 class="hometitle">关注</h2>
     <ul>
-        <li class="sina"><a href="/" target="_blank"><span>新浪微博</span>杨青博客</a></li>
-        <li class="tencent"><a href="/" target="_blank"><span>腾讯微博</span>杨青博客</a></li>
-        <li class="qq"><a href="/" target="_blank"><span>QQ号</span>476847113</a></li>
-        <li class="email"><a href="/" target="_blank"><span>邮箱帐号</span>dancesmiling@qq.com</a></li>
-        <li class="wxgzh"><a href="/" target="_blank"><span>微信号</span>yangqq_1987</a></li>
-        <li class="wx"><img src="images/wx.jpg"></li>
+        <?php
+        $github_url = '';
+        $qq = '';
+        if(!isset($user->id)||$user->id == 1){
+            $github_url = $systemPresenter->getKeyValue('github_url');
+            $qq = $systemPresenter->getKeyValue('qq');
+        }
+        ?>
+        <li class="wx"><img src="{{ asset('uploads/avatar')."/".$author->user_pic }}"></li>
+        @if ($github_url != "")
+         <li class="tencent"><a href="{{ $github_url }}" target="_blank"><span>GitHub</span>Mamba</a></li>
+         @endif
+         @if($qq != "")
+        <li class="qq"><a><span>QQ号</span>{{ $qq }}</a></li>
+        @endif
     </ul>
 </div>
