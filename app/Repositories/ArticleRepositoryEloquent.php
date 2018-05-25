@@ -61,11 +61,13 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
      */
     public function selectDate()
     {
-        $archives = Article::selectRaw('year(created_at)  year, month(created_at) month, count(*) count')
-            ->groupBy('year', 'month')
-            ->orderByRaw('min(created_at) desc')
-            ->get();
-        return $archives;
+//        $archives = Article::selectRaw('year(created_at)  year, month(created_at) month, count(*) count')
+//            ->groupBy('year', 'month')
+//            ->orderByRaw('min(created_at) desc')
+//            ->get();
+//        return $archives;
+        $articles=DB::select("select `id`,`title`,`created_at` from `articles` ORDER BY `id` desc");
+        return $articles;
     }
 
     /**

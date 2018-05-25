@@ -30,7 +30,7 @@ class CategoryController extends Controller
         $articles = $category->article()
             ->orderBy('sort', 'desc')
             ->orderBy('id', 'desc')
-            ->paginate(15,['id','title','desc','created_at','read_count','cate_id']);
+            ->paginate(15,['id','title','desc','created_at','read_count','cate_id','comment_count','list_pic']);
         return view('default.category_article', compact('category', 'articles'));
     }
 }

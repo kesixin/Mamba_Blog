@@ -16,11 +16,9 @@
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="{{ asset('default/css/animate.css') }}">
-
-    @yield('style')
-
     <link rel="stylesheet" href="{{ asset('default/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('default/css/people.css') }}" type="text/css" media="all">
+    @yield('style')
 
 </head>
 <body>

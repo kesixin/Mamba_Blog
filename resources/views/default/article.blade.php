@@ -5,8 +5,8 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
 @if($articles[0]!="")
     @foreach($articles as $article)
         <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
-            <h3 class="blogtitle"><a href="{{ route('article',['id'=>$article->id]) }}" target="_blank">{{ $article->title }}</a></h3>
-            <span class="blogpic"><a href="{{ route('article',['id'=>$article->id]) }}" title=""><img src="{{ asset('default/images/toppic01.jpg') }}" alt=""></a></span>
+            <h3 class="blogtitle"><a href="{{ route('article',['id'=>$article->id]) }}">{{ $article->title }}</a></h3>
+            <span class="blogpic"><a href="{{ route('article',['id'=>$article->id]) }}" title=""><img src="{{ $article->list_pic }}" style="height: 120px;" alt=""></a></span>
             <p class="blogtext">{{ $article->desc }} </p>
             <div class="bloginfo">
                 <ul>

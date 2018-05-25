@@ -141,7 +141,7 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .abtext { padding: 20px 20px; color: #999; line-height: 26px; text-align: justify; }
 .weixin img { width: 100% }
 /*pagebg*/
-.pagebg { margin-top: 80px; padding: 100px 0; text-align: center; width: 100%; }
+.pagebg { padding: 100px 0; text-align: center; width: 100%; }
 /*pagebg.pagebg p { font-size: 36px; color: #FFF; }*/
 .ab { background: url(../images/blank.jpg) no-repeat; background-size: cover; background-position: top center; }
 .sh { background: url(../images/page_bg.jpg) no-repeat; background-size: cover; background-position: top center; }

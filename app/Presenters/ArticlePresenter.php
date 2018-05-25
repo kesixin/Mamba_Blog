@@ -47,7 +47,7 @@ class ArticlePresenter extends FractalPresenter
     {
         $hostArticleList = $this->article
             ->orderBy('read_count','desc')
-            ->paginate(5,['id','title','read_count','created_at']);
+            ->paginate(5,['id','title','read_count','created_at','list_pic']);
 
         return $hostArticleList;
     }

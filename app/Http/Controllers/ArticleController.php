@@ -70,15 +70,16 @@ class ArticleController extends Controller
      */
     public function selectDate()
     {
-        $articles=[];
-        $years=[];
-        $archives = $this->article->selectDate();
-        foreach ($archives as $key=>$value){
-            $archives[$key]['articles'] = $this->article->selectByDate($value['year'],$value['month']);
-            $years[]=$value['year'];
-        }
-        $years=array_unique($years);
-        return view('default.date_article',compact('archives','years'));
+//        $articles=[];
+//        $years=[];
+//        $archives = $this->article->selectDate();
+//        foreach ($archives as $key=>$value){
+//            $archives[$key]['articles'] = $this->article->selectByDate($value['year'],$value['month']);
+//            $years[]=$value['year'];
+//        }
+//        $years=array_unique($years);
+        $articles = $this->article->selectDate();
+        return view('default.date_article',compact('articles'));
     }
 
 }
