@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <link href="{{ asset('default/css/base.css') }}" rel="stylesheet">
-    <link href="{{ asset('default/css/index.css') }}" rel="stylesheet">
+    <link href="{{ asset('default/css/index_new.css') }}" rel="stylesheet">
     <link href="{{ asset('default/css/m.css') }}" rel="stylesheet">
     @yield('style')
     <style>
