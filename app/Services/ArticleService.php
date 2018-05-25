@@ -138,6 +138,7 @@ class ArticleService
             'desc',
             'cate_id',
             'user_id',
+            'list_pic'
         ]), [
             'content' => $request->get('markdown-content'),
             'html_content' => $request->get('html-content')

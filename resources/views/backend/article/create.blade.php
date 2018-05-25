@@ -44,6 +44,14 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="desc">列表图(List_pic)</label>
+                            <div class="row">
+                                <div class='col-md-10'>
+                                    <input type='text' class='form-control' name="list_pic" id='list_pic' placeholder='请输入列表图地址'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="content">文章内容</label>
                             <div id="editormd">
                                 <textarea class="editormd-markdown-textarea" style="display:none;" id="content"
