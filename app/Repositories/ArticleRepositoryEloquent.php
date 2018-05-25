@@ -51,7 +51,7 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
     {
         $search = "%" . $keyword . "%";
         $this->applyConditions([['title', 'like', $search]]); //list($field, $condition, $val) = $value;
-        return $this->paginate(15, ['id', 'title', 'desc', 'user_id', 'cate_id', 'read_count', 'created_at']);
+        return $this->paginate(15, ['id', 'title', 'desc', 'user_id', 'cate_id', 'read_count', 'created_at','list_pic']);
 
     }
 

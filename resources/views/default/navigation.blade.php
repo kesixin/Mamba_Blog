@@ -10,11 +10,8 @@
         @endif
         <!--search begin-->
         <div id="search_bar" class="search_bar">
-            <form  id="searchform" action="[!--news.url--]e/search/index.php" method="post" name="searchform">
-                <input class="input" placeholder="想搜点什么呢..." type="text" name="keyboard" id="keyboard">
-                <input type="hidden" name="show" value="title" />
-                <input type="hidden" name="tempid" value="1" />
-                <input type="hidden" name="tbname" value="news">
+            <form  id="searchform" action="{{ route('search') }}" method="get" name="searchform">
+                <input class="input" placeholder="想搜点什么呢..." type="text" name="keyword" id="keyboard">
                 <input type="hidden" name="Submit" value="搜索" />
                 <span class="search_ico"></span>
             </form>
