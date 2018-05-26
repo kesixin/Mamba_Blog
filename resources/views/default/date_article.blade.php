@@ -11,7 +11,7 @@
 @section('content')
     <div class="pagebg timer"> </div>
     <div class="container">
-        <h1 class="t_nav"><a href="/" class="n1">网站首页</a><a href="/" class="n2">时间轴</a></h1>
+        <h1 class="t_nav"><a href="/" class="n1">网站首页</a><a class="n2">时间轴</a></h1>
         <div class="timebox">
             <ul id="list">
                 @foreach($articles as $article)
