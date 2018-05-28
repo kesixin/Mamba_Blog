@@ -17,15 +17,6 @@
 * 友情链接
 * 文件上传管理
 
-#### 依赖开源程序
-* LAMP
-* Laravel
-* AdminLTE
-* Bootstrap
-* Editor.md
-* andersao/l5-repository
-* etrepat/baum
-
 ### 获取源码
 
 源码地址：[Github](https://github.com/kesixin/new_blog)
