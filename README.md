@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #### 简介
 * 基于Laravel开发，支持markdown语法的博客。
 
@@ -20,12 +20,12 @@
 
 ### 获取源码
 
-源码地址：[Github](https://github.com/kesixin/new_blog)
+源码地址：[Github](https://github.com/kesixin/Mamba_Blog)
 
 * 使用gitclone获取源码
 
 ```
-git clone https://github.com/kesixin/new_blog.git
+git clone https://github.com/kesixin/Mamba_Blog.git
 ```
 
 ### 运行环境要求
