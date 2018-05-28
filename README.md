@@ -1,10 +1,10 @@
-### 欢迎使用，如果本项目对您有帮助，请帮忙点击Star一下！！！
 #### 简介
-* 一个基于Laravel开发，支持markdown语法开源的简易博客。
+* 基于Laravel开发，支持markdown语法的博客。
 
 #### 功能介绍
 * markdown文章编辑器
 * 文章发布
+* 时间轴
 * 评论功能（3.25添加评论功能，评论回复邮件提醒功能）
 * 浏览数统计
 * 文章分类
@@ -95,7 +95,11 @@ php artisan route:cache  //路由缓存
 
 ### 界面图
 
-![](https://upload-images.jianshu.io/upload_images/6673460-e2bfad0450c68de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/6673460-700ddde9436057fe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![](https://upload-images.jianshu.io/upload_images/6673460-7e14bad3fadd39a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/6673460-b4d7f3bcba4ca49e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](https://upload-images.jianshu.io/upload_images/6673460-2e8fcc78ebfb74fa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](https://upload-images.jianshu.io/upload_images/6673460-aa2d184c02e5b7b1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
