@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
   //   showMessage('欢迎' + visitor + '来到Falost的小窝阅读《' + title + '》', 6000);
   // }
   $(".spig").animate({
-        top: $(".spig").offset().top + 300,
+        top: $(".spig").offset().top + 350,
         left: document.body.offsetWidth - 160
       },
       {
