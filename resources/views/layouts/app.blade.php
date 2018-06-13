@@ -11,7 +11,7 @@
 
     <link href="{{ asset('default/css/base.css') }}" rel="stylesheet">
     <link href="{{ asset('default/css/index_new.css') }}" rel="stylesheet">
-    <link href="{{ asset('default/css/m.css') }}" rel="stylesheet">
+    <link href="{{ asset('default/css/m-new.css') }}" rel="stylesheet">
     <link href="{{ asset('default/css/people.css') }}" rel="stylesheet">
     @yield('style')
     <style>
