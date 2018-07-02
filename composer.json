@@ -14,7 +14,8 @@
         "dflydev/apache-mime-types": "^1.0",
         "doctrine/dbal": "^2.5",
         "moell/laravel-rss": "1.*",
-        "barryvdh/laravel-ide-helper": "^2.4"
+        "barryvdh/laravel-ide-helper": "^2.4",
+        "mews/captcha": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

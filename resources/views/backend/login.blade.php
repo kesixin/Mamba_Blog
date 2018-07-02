@@ -57,6 +57,19 @@
                     </span>
                 @endif
             </div>
+            <div class="row form-group {{ $errors->has('password') ? ' has-warning' : '' }}">
+                <div class="col-md-8">
+                    <input type="text" class="form-control {{$errors->has('captcha')?'parsley-error':''}}" name="captcha" placeholder="captcha">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{captcha_src()}}" style="cursor: pointer" onclick="this.src='{{captcha_src()}}'+Math.random()">
+                </div>
+                @if($errors->has('captcha'))
+                    <div class="col-md-12">
+                        <p class="text-left" style="color:#f39c12;"><strong>{{$errors->first('captcha')}}</strong></p>
+                    </div>
+                @endif
+            </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">

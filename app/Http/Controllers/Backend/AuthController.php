@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -54,6 +55,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'captcha' => 'required|captcha',
         ]);
     }
 
@@ -69,6 +71,17 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    protected function validateLogin(Request $request){
+        $this->validate($request, [
+            $this->loginUsername() => 'required',
+            'password' => 'required',
+            'captcha' => 'required|captcha',
         ]);
     }
 }
