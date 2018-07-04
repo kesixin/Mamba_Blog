@@ -78,6 +78,9 @@
         $(function(){
             $('#share').share({sites: ['qzone', 'qq', 'weibo','wechat']});
         });
+        $('.markdown-body a[href^="http"]').each(function() {
+            $(this).attr('target', '_blank');
+        });
     </script>
 
 @endsection

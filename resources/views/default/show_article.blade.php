@@ -263,6 +263,11 @@ $author = isset($user->id) ? $user : $userPresenter->getUserInfo();
                 });
             }
         }
+        $(document).ready(function() { //为超链接加上target='_blank'属性
+        $('.markdown-body a[href^="http"]').each(function() {
+                $(this).attr('target', '_blank');
+            });
+        });
     </script>
 
 @endsection
