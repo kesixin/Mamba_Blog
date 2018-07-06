@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Requests\Backend\Article\CreateRequest;
 use App\Http\Requests\Backend\Article\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Services\ArticleService;
+use BmobObject;
 
 class ArticleController extends Controller
 {
@@ -55,7 +54,10 @@ class ArticleController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        return $this->articleServer->store($request);
+        $bmobObj = new BmobObject("articles"); //保存到Bmob数据库
+        $res=$bmobObj->create(array("content"=>"比目")); //添加对象
+        var_dump($res);
+        //return $this->articleServer->store($request);
     }
 
     /**
