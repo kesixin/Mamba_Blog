@@ -123,7 +123,7 @@
         <div class="pull-right hidden-xs">
 
         </div>
-        <strong>Powered by <a href="http://blog.com" target="_blank">Mamba Blog</a></strong>
+        <strong>Powered by <a href="http://blog.mambaxin.com" target="_blank">Mamba Blog</a></strong>
     </footer>
 </div>
 <!-- ./wrapper -->
