@@ -24,7 +24,7 @@ return [
         [
             'backend.home' => [
                 'icon'  => 'fa fa-home',
-                'name'  => 'Home'
+                'name'  => 'web端管理'
             ]
 
         ],

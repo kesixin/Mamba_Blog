@@ -26,6 +26,27 @@ class BackendPresenter
         return $menuString;
     }
 
+    public function mini()
+    {
+        $show = config('mini.show');
+        if(!$show){
+            return "";
+        }
+        $this->route = Route::currentRouteName();
+        $menu=config('mini.menu');
+
+        $menuString='';
+        foreach ($menu as $mList){
+            $count = count($mList);
+            if($count>1){
+                $menuString .=$this->childrenShow($mList);
+            }else{
+                $menuString .=$this->parentShow($mList);
+            }
+        }
+
+        return $menuString;
+    }
 
     /**
      * @param $menu

@@ -103,6 +103,7 @@
             </div>
             <ul class='sidebar-menu'>
                 {!! $backendPresenter->menu()  !!}
+                {!! $backendPresenter->mini()  !!}
             </ul>
         </section>
         <!-- /.sidebar -->

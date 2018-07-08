@@ -14,6 +14,7 @@
         <div class="col-xs-12">
             <div class="box box-solid">
                 <form role="form" method="post" action="{{ route('backend.category.update', ['id' => $category->id]) }}" id="category-form">
+                    <input type="hidden" value="{{ $category->bmob_objectid  }}" name="bmob_objectid" id="bmob_objectid">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">分类名称</label>

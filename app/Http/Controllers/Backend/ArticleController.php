@@ -15,6 +15,7 @@ class ArticleController extends Controller
      * @var ArticleService
      */
     protected $articleServer;
+    protected $BmobObj;
 
     /**
      * ArticleController constructor.
@@ -23,6 +24,10 @@ class ArticleController extends Controller
     public function __construct(ArticleService $articleService)
     {
         $this->articleServer = $articleService;
+        $show = config('mini.show');
+        if($show){
+            $this->BmobObj = new BmobObject("article");
+        }
     }
 
     /**
@@ -54,10 +59,7 @@ class ArticleController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $bmobObj = new BmobObject("articles"); //保存到Bmob数据库
-        $res=$bmobObj->create(array("content"=>"比目")); //添加对象
-        var_dump($res);
-        //return $this->articleServer->store($request);
+        return $this->articleServer->store($request);
     }
 
     /**
@@ -88,6 +90,11 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         return $this->articleServer->destroy($id);
+    }
+
+    public function miniArticle()
+    {
+
     }
 
 

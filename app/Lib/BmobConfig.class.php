@@ -12,8 +12,4 @@ class BmobConfig
      const RESTKEY = '0914e7d2e4950d46003874ee1056270e';  //后台"应用密钥"中的REST API Key
      const BMOBURL = 'https://api.bmob.cn/1/';  //请勿修改
      const BMOBURLTWO = 'https://api.bmob.cn/2/';  //请勿修改
-
-
-
-
 }
