@@ -22,7 +22,7 @@
                     'icon' => '',
                     'name' => '发布文章'
                 ],
-                'backend.category.index' => [
+                'backend.category.category-index' => [
                     'icon' => '',
                     'name' => '文章分类'
                 ]

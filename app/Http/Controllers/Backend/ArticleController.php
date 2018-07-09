@@ -144,6 +144,10 @@ class ArticleController extends Controller
         return redirect('backend/mini-index')->with('success', '文章添加成功');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function miniArticleEdit($id)
     {
         $article = $this->BmobObj->get($id, array('include=category.name'));
@@ -159,6 +163,43 @@ class ArticleController extends Controller
         $select .= "</select>";
 
         return view('backend.article.mini_edit',compact('article','select'));
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function miniArticleUpdate(Request $request,$id)
+    {
+        $res = $this->BmobObj->updateRelPointer($id,"category","categories",$request->category);
+        $res = $this->BmobObj->update($id,array(
+            "title"=>$request->get('title'),
+            "excerpt"=>$request->get('excerpt'),
+            "author"=>Auth::user()->name,
+            "content"=>$request->get('html-content'),
+            "mdcontent"=>$request->get('markdown-content')
+        ));
+        if (!$res) {
+            return redirect()->back()->withErrors('系统异常，文章修改失败');
+        }
+        return redirect('backend/mini-index')->with('success', '文章修改成功');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function miniArticleDestroy($id)
+    {
+        $res = $this->BmobObj->delete($id);
+        if(!$res){
+            return response()->json([
+                'status' => 1
+            ]);
+        }
+        return response()->json(['status' => 0]);
+
     }
 
 

@@ -60,7 +60,7 @@
                                     <td>
                                         <a href='{{ route("backend.article.mini-edit", ["id" => $value->objectId]) }}' class='btn btn-info btn-xs'>
                                             <i class="fa fa-pencil"></i> 修改</a>
-                                        <a data-href='{{ route("backend.article.destroy", ["id" => $value->objectId]) }}'
+                                        <a data-href='{{ route("backend.article.mini-destroy", ["id" => $value->objectId]) }}'
                                            class='btn btn-danger btn-xs article-delete'><i class="fa fa-trash-o"></i> 删除</a>
                                     </td>
                                 </tr>

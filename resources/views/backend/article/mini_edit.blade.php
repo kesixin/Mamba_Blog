@@ -16,7 +16,7 @@
         <div class="col-md-12">
             @include('backend.alert.warning')
             <div class="box box-solid">
-                <form role="form" method="post" action="{{ url('backend/mini-store') }}" id="article-form">
+                <form role="form" method="post" action="{{ url('backend/mini-update',['id'=>$article->objectId]) }}" id="article-form">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="title">标题</label>
@@ -53,8 +53,6 @@
                     </div>
 
                     {{ csrf_field() }}
-
-
                     <div class="box-footer">
                         <button type="submit" id="submit-article" class="btn btn-primary">发布</button>
                         <button type="button" id="reset-btn" class="btn btn-warning">重置</button>

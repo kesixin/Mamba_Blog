@@ -56,9 +56,22 @@ Route::group(['prefix' => 'backend'], function () {
 
         Route::get('mini-edit/{id}', ['as' => 'backend.article.mini-edit', 'uses' => 'Backend\ArticleController@miniArticleEdit']);
 
+        Route::post('mini-update/{id}',['as' => 'backend.article.mini-update','uses'=>'Backend\ArticleController@miniArticleUpdate']);
+
+        Route::delete('mini-destroy/{id}',['as' => 'backend.article.mini-destroy','uses'=>'Backend\ArticleController@miniArticleDestroy']);
+
         Route::resource('article', 'Backend\ArticleController');
 
         Route::resource('comment','Backend\CommentController');
+
+        Route::get('category-index', ['as' => 'backend.category.category-index', 'uses' => 'Backend\CategoryController@miniCategoryIndex']);
+
+        Route::get('category-create', ['as' => 'backend.category.category-create', 'uses' => 'Backend\CategoryController@miniCategoryCreate']);
+
+        Route::post('category-store', ['as' => 'backend.category.category-store', 'uses' => 'Backend\CategoryController@miniCategoryStore']);
+
+        Route::get('category-edit/{id}', ['as' => 'backend.category.category-edit', 'uses' => 'Backend\CategoryController@miniCategoryEdit']);
+
 
         Route::resource('category', 'Backend\CategoryController');
 

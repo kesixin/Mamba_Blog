@@ -7,17 +7,25 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Category\CreateRequest;
 use App\Http\Requests\Backend\Category\UpdateRequest;
+use Illuminate\Http\Request;
 use App\Repositories\CategoryRepositoryEloquent;
 use App\Repositories\NavigationRepositoryEloquent;
+use BmobObject;
+use Symfony\Component\CssSelector\Parser\Reader;
 
 class CategoryController extends Controller
 {
 
     protected $category;
+    protected $BmobObj;
 
     public function __construct(CategoryRepositoryEloquent $category)
     {
         $this->category = $category;
+        $show = config('mini.show');
+        if($show){
+            $this->BmobObj = new BmobObject("categories");
+        }
     }
 
     /**
@@ -109,5 +117,42 @@ class CategoryController extends Controller
             return redirect()->back()->with('success','设置成功');
         }
         return redirect()->back()->withErrors('设置失败');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function miniCategoryIndex()
+    {
+        $result = $this->BmobObj->get("",array('order=createdAt'));
+        $categories = $result->results;
+        return view("backend.category.mini-index",compact("categories"));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function miniCategoryCreate()
+    {
+        return view("backend.category.mini-create");
+    }
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function miniCategoryStore(Request $request)
+    {
+        $res = $this->BmobObj->create(array('name'=>$request->get('name')));
+        if (!$res) {
+            return redirect()->back()->withErrors('系统异常，文章分类失败');
+        }
+        return redirect('backend/category-index')->with('success', '文章分类添加成功');
+    }
+
+    public function miniCategoryEdit($id)
+    {
+        $category = $this->BmobObj->get($id);
+        return view('backend.category.mini-edit',compact("category"));
     }
 }
