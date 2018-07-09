@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
 use App\Http\Requests\Backend\Article\CreateRequest;
 use App\Http\Requests\Backend\Article\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ArticleService;
 use BmobObject;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -25,8 +27,8 @@ class ArticleController extends Controller
     {
         $this->articleServer = $articleService;
         $show = config('mini.show');
-        if($show){
-            $this->BmobObj = new BmobObject("article");
+        if ($show) {
+            $this->BmobObj = new BmobObject("articles");
         }
     }
 
@@ -59,6 +61,7 @@ class ArticleController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        var_dump($request);exit;
         return $this->articleServer->store($request);
     }
 
@@ -92,9 +95,70 @@ class ArticleController extends Controller
         return $this->articleServer->destroy($id);
     }
 
-    public function miniArticle()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function miniIndex()
     {
+        $result = $this->BmobObj->get("", array('include=category.name', 'order=-createdAt'));
+        $articles = $result->results;
+        return view('backend.article.mini_index', compact('articles'));
+    }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function miniArticleCreate()
+    {
+        $BmobObj = new BmobObject("categories");
+        $result = $BmobObj->get();
+        $select = "<select id='category' name='category' class='form-control'>";
+        $select .= "<option value='0'>--请选择--</option>";
+        foreach ($result->results as $key => $value) {
+            $selected = $value->objectId == 1 ? "selected" : "";
+            $select .= "<option value='" . $value->objectId . "' " . $selected . ">" . $value->name . "</option>";
+        }
+        $select .= "</select>";
+        return view('backend.article.mini_create',compact('select'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function miniArticleStore(Request $request)
+    {
+        $res=$this->BmobObj->addRelPointer(array(array("category","categories",$request->get('category'))));
+        $res=$this->BmobObj->update($res->objectId,array(
+            "title"=>$request->get('title'),
+            "read_counts"=>0,
+            "excerpt"=>$request->get('excerpt'),
+            "author"=>Auth::user()->name,
+            "content"=>$request->get('html-content'),
+            "mdcontent"=>$request->get('markdown-content')
+        ));
+        if (!$res) {
+            return redirect()->back()->withErrors('系统异常，文章发布失败');
+        }
+        return redirect('backend/mini-index')->with('success', '文章添加成功');
+    }
+
+    public function miniArticleEdit($id)
+    {
+        $article = $this->BmobObj->get($id, array('include=category.name'));
+
+        $BmobObj = new BmobObject("categories");
+        $result = $BmobObj->get();
+        $select = "<select id='category' name='category' class='form-control'>";
+        $select .= "<option value='0'>--请选择--</option>";
+        foreach ($result->results as $key => $value) {
+            $selected = $value->objectId == $article->category->objectId ? "selected" : "";
+            $select .= "<option value='" . $value->objectId . "' " . $selected . ">" . $value->name . "</option>";
+        }
+        $select .= "</select>";
+
+        return view('backend.article.mini_edit',compact('article','select'));
     }
 
 

@@ -48,6 +48,14 @@ Route::group(['prefix' => 'backend'], function () {
 
         Route::get('/', ['as' => 'backend.home', 'uses' => 'Backend\HomeController@index']);
 
+        Route::get('mini-index', ['as' => 'backend.article.mini-index', 'uses' => 'Backend\ArticleController@miniIndex']);
+
+        Route::get('mini-create', ['as' => 'backend.article.mini-create', 'uses' => 'Backend\ArticleController@miniArticleCreate']);
+
+        Route::post('mini-store', ['as' => 'backend.article.mini-store', 'uses' => 'Backend\ArticleController@miniArticleStore']);
+
+        Route::get('mini-edit/{id}', ['as' => 'backend.article.mini-edit', 'uses' => 'Backend\ArticleController@miniArticleEdit']);
+
         Route::resource('article', 'Backend\ArticleController');
 
         Route::resource('comment','Backend\CommentController');

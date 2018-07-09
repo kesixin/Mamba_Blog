@@ -6,6 +6,7 @@ namespace App\Presenters;
 
 use App\Repositories\CategoryRepositoryEloquent;
 use Prettus\Repository\Presenter\FractalPresenter;
+use BmobObject;
 
 class CategoryPresenter extends FractalPresenter
 {
@@ -29,6 +30,11 @@ class CategoryPresenter extends FractalPresenter
     public function getSelect($defaultCategoryId = 0, $nullText = '请选择', $nullValue = 0)
     {
         $category = $this->category->getNestedList();
+        return $this->getString($defaultCategoryId , $nullText , $nullValue ,$category);
+    }
+
+    public function getString($defaultCategoryId = 0, $nullText = '请选择', $nullValue = 0,$category)
+    {
         $select = "<select id='cate_id' name='cate_id' class='form-control'>";
         $select .="<option value='".$nullValue."'>--".$nullText."--</option>";
         if($category){
@@ -41,5 +47,4 @@ class CategoryPresenter extends FractalPresenter
 
         return $select;
     }
-
 }

@@ -14,11 +14,11 @@
                     'icon' => 'fa fa-files-o',
                     'name' => '文章'
                 ],
-                'backend.article.index' => [
+                'backend.article.mini-index' => [
                     'icon' => '',
                     'name' => '文章管理'
                 ],
-                'backend.article.create' => [
+                'backend.article.mini-create' => [
                     'icon' => '',
                     'name' => '发布文章'
                 ],
