@@ -61,7 +61,6 @@ class ArticleController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        var_dump($request);exit;
         return $this->articleServer->store($request);
     }
 

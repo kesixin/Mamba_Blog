@@ -9,7 +9,11 @@ use App\Http\Requests\Backend\User\CreateRequest;
 use App\Http\Requests\Backend\User\UpdateRequest;
 use App\Repositories\UserRepositoryEloquent;
 use App\Services\ImageUploads;
+use Beta\B;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use BmobObject;
+use App\Common\CustomPage;
 
 class UserController extends Controller
 {
@@ -23,6 +27,10 @@ class UserController extends Controller
     public function __construct(UserRepositoryEloquent $user)
     {
         $this->user = $user;
+        $show = config('mini.show');
+        if ($show) {
+            $this->BmobObj = new BmobObject("_User");
+        }
     }
 
     /**
@@ -109,7 +117,7 @@ class UserController extends Controller
                 Storage::disk('upload')->delete('avatar/' . $user['user_pic']);
             }
 
-            return redirect('backend/user')->with('success',' 用户修改成功');
+            return redirect('backend/user')->with('success', ' 用户修改成功');
         }
 
         return redirect()->back()->withErrors('用户修改失败');
@@ -121,14 +129,54 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if($this->user->delete($id)){
+        if ($this->user->delete($id)) {
             return response()->json([
-                'status'=>0
+                'status' => 0
             ]);
         }
 
         return response()->json([
-            'status'=>1
+            'status' => 1
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function miniUserIndex(Request $request)
+    {
+        $pageSize = 40;//每页条数
+        if ($request->get('nowPage')) {
+            $nowPage = $request->get('nowPage');//当前页码
+        } else {
+            $nowPage = 1;
+        }
+        $res = $this->BmobObj->get("", array('groupcount=true', 'groupby=createdAt' . 'order=-createdAt'));
+        $count = $res->results[0]->_count;//总条数
+        $countPage = ceil($count / $pageSize);//总页数
+        $pages = CustomPage::getSelfPageView($nowPage, $countPage, '/backend/user-index', '');
+        $skip = ($nowPage-1)*$pageSize;
+        $res = $this->BmobObj->get("",array("limit=$pageSize","skip=$skip",'order=-createdAt'));
+        $users = $res->results;
+
+        return view('backend.user.mini_index',compact("pages","users","count"));
+
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function miniUserDestroy($id)
+    {
+        $res = $this->BmobObj->delete($id);
+        if(!$res){
+            return response()->json([
+                'status' => 1
+            ]);
+        }
+        return response()->json(['status' => 0]);
+    }
+
 }

@@ -27,6 +27,7 @@ class BmobRestClient
         $this->_bmobRestkey = BmobConfig::RESTKEY;
         $this->_bmobUrl = BmobConfig::BMOBURL;
         $this->_bmobUrlTwo = BmobConfig::BMOBURLTWO;
+        $this->masterKey = BmobConfig::MASTERKEY;
 
         if (empty($this->_bmobAppid) || empty($this->_bmobRestkey)) {
             $this->throwError('必须要设置Application ID 和 REST API Key');

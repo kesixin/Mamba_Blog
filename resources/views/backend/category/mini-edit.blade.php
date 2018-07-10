@@ -13,7 +13,7 @@
         @include('backend.alert.warning')
         <div class="col-xs-12">
             <div class="box box-solid">
-                <form role="form" method="post" action="{{ route('backend.category.update', ['id' => $category->objectId]) }}" id="category-form">
+                <form role="form" method="post" action="{{ route('backend.category.category-update', ['id' => $category->objectId]) }}" id="category-form">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">分类名称</label>
@@ -26,7 +26,6 @@
                     </div>
 
                     {{ csrf_field() }}
-                    {{ method_field('PUT') }}
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">确定</button>

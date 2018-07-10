@@ -150,9 +150,38 @@ class CategoryController extends Controller
         return redirect('backend/category-index')->with('success', '文章分类添加成功');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function miniCategoryEdit($id)
     {
         $category = $this->BmobObj->get($id);
         return view('backend.category.mini-edit',compact("category"));
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function miniCategoryUpdate(Request $request,$id)
+    {
+        $res = $this->BmobObj->update($id,array("name"=>$request->get('name')));
+        if (!$res) {
+            return redirect()->back()->withErrors('系统异常，分类修改失败');
+        }
+        return redirect('backend/category-index')->with('success', '分类修改成功');
+    }
+
+    public function miniCategoryDestroy($id)
+    {
+        $res = $this->BmobObj->delete($id);
+        if(!$res){
+            return response()->json([
+                'status' => 1
+            ]);
+        }
+        return response()->json(['status' => 0]);
     }
 }

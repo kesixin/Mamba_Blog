@@ -27,5 +27,17 @@
                     'name' => '文章分类'
                 ]
             ],
+            [
+                'backend.user.user-index' => [
+                    'icon' => 'fa fa-user',
+                    'name' => '用户列表'
+                ]
+            ],
+            [
+                'backend.comment.mini-index' => [
+                    'icon' => 'fa fa-comment',
+                    'name' => '评论列表'
+                ]
+            ],
         ]
     ];

@@ -62,6 +62,10 @@ Route::group(['prefix' => 'backend'], function () {
 
         Route::resource('article', 'Backend\ArticleController');
 
+        Route::get('comment-index', ['as' => 'backend.comment.mini-index', 'uses' => 'Backend\CommentController@miniIndex']);
+
+        Route::delete('comment-destroy/{id}', ['as' => 'backend.comment.mini-destroy', 'uses' => 'Backend\CommentController@miniDestroy']);
+
         Route::resource('comment','Backend\CommentController');
 
         Route::get('category-index', ['as' => 'backend.category.category-index', 'uses' => 'Backend\CategoryController@miniCategoryIndex']);
@@ -72,10 +76,19 @@ Route::group(['prefix' => 'backend'], function () {
 
         Route::get('category-edit/{id}', ['as' => 'backend.category.category-edit', 'uses' => 'Backend\CategoryController@miniCategoryEdit']);
 
+        Route::post('category-update/{id}', ['as' => 'backend.category.category-update', 'uses' => 'Backend\CategoryController@miniCategoryUpdate']);
+
+        Route::delete('category-destroy/{id}', ['as' => 'backend.category.category-destroy', 'uses' => 'Backend\CategoryController@miniCategoryDestroy']);
 
         Route::resource('category', 'Backend\CategoryController');
 
         Route::get('category/set-nav/{id}', ['as' => 'backend.category.set-nav', 'uses' => 'Backend\CategoryController@setNavigation']);
+
+        Route::get('user-index', ['as' => 'backend.user.user-index', 'uses' => 'Backend\UserController@miniUserIndex']);
+
+        Route::delete('user-destroy/{id}', ['as' => 'backend.user.user-destroy', 'uses' => 'Backend\UserController@miniUserDestroy']);
+
+        Route::get('sign-index', ['as' => 'backend.user.sign-index', 'uses' => 'Backend\UserController@miniSignIndex']);
 
         Route::resource('user', 'Backend\UserController');
 
