@@ -71,6 +71,29 @@ php artisan migrate
 php artisan db:seed --class=UserTableSeeder
 ```
 
+### 后台管理小程序
+* 因为此后台与博客小程序版相关联，所以使用了博客小程序的话可以进行如下配置来管理小程序数据，如果未使用请忽略。
+
+```
+在\app\Lib\BmobConfig.class.php中配置
+const APPID = '';  //Bmob后台"应用密钥"中的Application ID
+const RESTKEY = '';  //Bmob后台"应用密钥"中的REST API Key
+const MASTERKEY = ''; //Bmob后台"应用密钥"中的Master Key
+```
+
+* 在.env文件中修改
+
+```
+//未使用小程序管理的默认为false
+MINI_PROGRAM=true
+```
+
+* 运行命令
+
+```
+composer dumpautoload 
+```
+
 ### 调优
 * 部署到线上可选，本地测试无需执行
 
