@@ -56,7 +56,7 @@
                     {!! $page->html_content !!}
                 </div>
                 <div style="margin-top:20px;">
-                    <div id="share" class="social-share"></div>
+                    <div id="share" class="social-share" data-disabled="google,twitter,facebook,diandian"></div>
                 </div>
                 <br><br>
             </div>
