@@ -51,7 +51,7 @@ class CustomPage
      * @param $search   搜索
      * @return string
      */
-    public static function getSelfPageView($nowPage, $totalPage, $baseUrl, $search)
+    public static function getSelfPageView($nowPage, $totalPage, $baseUrl, $search=array())
     {
 
         $pagePre = '<ul class="pagination">';

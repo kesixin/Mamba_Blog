@@ -62,7 +62,7 @@ class CommentController extends Controller
         $res = $this->BmobObj->get("", array('groupcount=true', 'groupby=createdAt' . 'order=-createdAt'));
         $count = $res->results[0]->_count;//总条数
         $countPage = ceil($count / $pageSize);//总页数
-        $pages = CustomPage::getSelfPageView($nowPage, $countPage, '/backend/comment-index', '');
+        $pages = CustomPage::getSelfPageView($nowPage, $countPage, '/backend/comment-index');
         $skip = ($nowPage-1)*$pageSize;
         $res = $this->BmobObj->get("",array("limit=$pageSize","skip=$skip",'order=-createdAt','include=replyer,user'));
 

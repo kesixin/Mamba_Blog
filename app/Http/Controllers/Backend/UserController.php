@@ -155,7 +155,7 @@ class UserController extends Controller
         $res = $this->BmobObj->get("", array('groupcount=true', 'groupby=createdAt' . 'order=-createdAt'));
         $count = $res->results[0]->_count;//总条数
         $countPage = ceil($count / $pageSize);//总页数
-        $pages = CustomPage::getSelfPageView($nowPage, $countPage, '/backend/user-index', '');
+        $pages = CustomPage::getSelfPageView($nowPage, $countPage, '/backend/user-index');
         $skip = ($nowPage-1)*$pageSize;
         $res = $this->BmobObj->get("",array("limit=$pageSize","skip=$skip",'order=-createdAt'));
         $users = $res->results;
