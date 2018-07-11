@@ -15,7 +15,7 @@
         <div class="timebox">
             <ul id="list">
                 @foreach($articles as $article)
-                    <li><span>{{date('Y-m-d',strtotime($article->created_at))}}</span><a href="{{ route('article',['id'=>$article->id]) }}" title="{{$article->title}}">{{$article->title}}</a></li>
+                    <li><span>{{date('Y-m-d',strtotime($article->created_at))}}</span><a href="{{ route('article',['id'=>$article->id]) }}" title="{{$article->title}}" target="_blank">{{$article->title}}</a></li>
                 @endforeach
             </ul>
         </div>

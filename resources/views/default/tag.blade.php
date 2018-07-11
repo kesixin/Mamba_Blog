@@ -7,7 +7,7 @@
         ?>
         @if($tagList)
             @foreach($tagList as $item)
-                <a href="{{ route('tag', ['id' => $item->id]) }}">{{ $item->tag_name }}</a>
+                <a href="{{ route('tag', ['id' => $item->id]) }}" target="_blank">{{ $item->tag_name }}</a>
             @endforeach
         @endif
     </ul>

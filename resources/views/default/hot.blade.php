@@ -7,7 +7,7 @@
         @if($hotArticleList)
             @foreach($hotArticleList as $item)
             <li> <i><img src="{{$item->list_pic}}" style="width:100%;"></i>
-            <p><a href="{{ route('article', ['id' => $item->id]) }}">{{ $articlePresenter->formatTitle($item->title) }}</a></p>
+            <p><a href="{{ route('article', ['id' => $item->id]) }}" target="_blank">{{ $articlePresenter->formatTitle($item->title) }}</a></p>
             <span>{{ date('Y-m-d',strtotime($item->created_at)) }}</span> </li>
             @endforeach
         @endif
