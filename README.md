@@ -62,6 +62,14 @@ DB_PORT=3306 #数据库端口
 DB_DATABASE= #数据库名称
 DB_USERNAME= #数据库用户
 DB_PASSWORD= #数据库密码
+
+//配置邮箱
+MAIL_DRIVER=smtp #传输协议
+MAIL_HOST=       #发送邮件服务器  
+MAIL_PORT=465    #端口号
+MAIL_USERNAME=	 #账号
+MAIL_PASSWORD=	 #密码(QQ邮箱是最新的授权码)
+MAIL_ENCRYPTION=ssl #加密方式
 ```
 
 ### 数据迁移和数据填充
