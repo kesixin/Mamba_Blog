@@ -75,5 +75,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return false;
     }
 
+    /**
+     * @return mixed
+     * 获取作者信息
+     */
+    public function getUserInfo()
+    {
+        $colums = ['id', 'name', 'user_pic','email'];
+        return $this->first($colums);
+    }
+
 
 }

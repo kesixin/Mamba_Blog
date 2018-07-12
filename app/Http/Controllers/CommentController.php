@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 use App\Common\MyFunction;
 use App\Models\Article;
 use App\Models\Comment;
+use App\User;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepositoryEloquent;
 use App\Repositories\ArticleRepositoryEloquent;
+use App\Repositories\UserRepositoryEloquent;
 use App\Services\CommentService;
 use Auth;
 use Mail;
@@ -21,15 +23,17 @@ class CommentController extends Controller
      */
     protected $commentServer;
     protected $article;
+    protected $user;
 
     /**
      * ArticleController constructor.
      * @param ArticleService $articleService
      */
-    public function __construct(CommentService $commentService,ArticleRepositoryEloquent $article)
+    public function __construct(CommentService $commentService,ArticleRepositoryEloquent $article,UserRepositoryEloquent $user)
     {
         $this->commentServer = $commentService;
         $this->article = $article;
+        $this->user = $user;
     }
 
 
@@ -76,8 +80,15 @@ class CommentController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
     public function send(Request $request)
     {
+        $userInfo = $this->user->getUserInfo();
+        $url=url('/article/'.$request->article_id);
+        $this->mail($userInfo->email,$url);
         if($request->comment_id){
             $commentData=$this->commentServer->selectByParentId($request->comment_id);
             if($commentData->email){
