@@ -6,4 +6,3 @@ Homestead.json
 .env
 .idea
 /app/Lib/BmobConfig.class.php
-/database/migrations
