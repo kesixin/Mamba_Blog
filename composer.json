@@ -1,7 +1,7 @@
 {
-    "name": "moell/moell-blog",
-    "description": "The Moell Blog.",
-    "keywords": ["blog", "laravel", "markdown blog", "php blog", "moell blog"],
+    "name": "Mamba blog",
+    "description": "The Mamba Blog.",
+    "keywords": ["blog", "laravel", "markdown blog", "php blog", "Mamba blog"],
     "license": "MIT",
     "type": "project",
     "require": {
