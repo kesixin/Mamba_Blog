@@ -131,9 +131,9 @@ class ArticleController extends Controller
         $res=$this->BmobObj->addRelPointer(array(array("category","categories",$request->get('category'))));
         $res=$this->BmobObj->update($res->objectId,array(
             "title"=>$request->get('title'),
-            "read_counts"=>0,
+            "read_counts"=>(int)$request->get('read_counts'),
             "excerpt"=>$request->get('excerpt'),
-            "author"=>Auth::user()->name,
+            "author"=>$request->get('author'),
             "content"=>$request->get('html-content'),
             "mdcontent"=>$request->get('markdown-content')
         ));
@@ -174,8 +174,9 @@ class ArticleController extends Controller
         $res = $this->BmobObj->updateRelPointer($id,"category","categories",$request->category);
         $res = $this->BmobObj->update($id,array(
             "title"=>$request->get('title'),
+            "read_counts"=>(int)$request->get('read_counts'),
             "excerpt"=>$request->get('excerpt'),
-            "author"=>Auth::user()->name,
+            "author"=>$request->get('author'),
             "content"=>$request->get('html-content'),
             "mdcontent"=>$request->get('markdown-content')
         ));

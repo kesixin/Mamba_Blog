@@ -35,6 +35,22 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="desc">作者(Author)</label>
+                            <div class="row">
+                                <div class='col-md-10'>
+                                    <input type='text' class='form-control' name="author" id='author' placeholder='请输入文章作者'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">阅读数(Read_counts)</label>
+                            <div class="row">
+                                <div class='col-md-10'>
+                                    <input type='text' class='form-control' name="read_counts" id='read_counts' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder='请输入文章阅读数'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="content">文章内容</label>
                             <div id="editormd">
                                 <textarea class="editormd-markdown-textarea" style="display:none;" id="content"
