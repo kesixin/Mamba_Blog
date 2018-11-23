@@ -33,10 +33,10 @@
 </header>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <!--people-->
-<div id="app"></div>
-<script type="text/javascript">
-    var isindex=true;var title="";var visitor="游客";
-</script>
+{{--<div id="app"></div>--}}
+{{--<script type="text/javascript">--}}
+    {{--var isindex=true;var title="";var visitor="游客";--}}
+{{--</script>--}}
 <!--end people-->
 <article>
     <div class="blogsbox">
