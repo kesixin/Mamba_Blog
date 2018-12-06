@@ -93,7 +93,7 @@ header, .blogsbox, .banner { width: 100%; margin: auto; }
 article { width: 90%; margin: 70px auto 0 }
 .imginfo { font-size: 18px; bottom: 22%; }
 .bloginfo { width: 100%; clear: both; }
-.blogs .blogpic { width: 100%; height: auto; margin-bottom: 10px }
+.blogs .blogpic { width: 60%; height: auto; margin-bottom: 10px;margin-left: 20%; }
 .fader { padding-top: 60%; width: 100% }
 .bloginfo ul li { margin-right: 10px }
 .bplist li img { height: 100px }
