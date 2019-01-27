@@ -56,7 +56,7 @@
 <script src="{{ asset('default/js/jQuery-2.2.0.min.js') }}"></script>
 <script src="{{ asset('default/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('default/js/jquery.easyfader.min.js') }}"></script>
-<script src="{{ asset('default/js/people.js') }}"></script>
+{{--<script src="{{ asset('default/js/people.js') }}"></script>--}}
 <script src="{{ asset('default/js/conn.js') }}"></script>
 <script src="{{ asset('default/js/nav.js') }}"></script>
 <script src="{{ asset('default/js/scrollReveal.js') }}"></script>
