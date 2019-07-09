@@ -99,7 +99,7 @@ class ArticleController extends Controller
      */
     public function miniIndex()
     {
-        $result = $this->BmobObj->get("", array('include=category.name', 'order=-createdAt'));
+        $result = $this->BmobObj->get("", array('keys=author,title,read_counts,createdAt,objectId', 'order=-createdAt'));
         $articles = $result->results;
         return view('backend.article.mini_index', compact('articles'));
     }
