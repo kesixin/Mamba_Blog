@@ -15,7 +15,9 @@
         "doctrine/dbal": "^2.5",
         "moell/laravel-rss": "1.*",
         "barryvdh/laravel-ide-helper": "^2.4",
-        "mews/captcha": "^2.2"
+        "mews/captcha": "^2.2",
+        "aliyuncs/oss-sdk-php": "^2.3",
+        "doctrine/inflector": "1.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

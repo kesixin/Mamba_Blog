@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UploadService;
 use Mockery\Exception;
+use OSS\OssClient;
+use OSS\Core\OssException;
 
 class UploadController extends Controller
 {
@@ -139,47 +141,133 @@ class UploadController extends Controller
         }
     }
 
+//    public function uploadimage(Request $request)
+//    {
+//        $message='';
+//        if (!$this->disk->exists('/article')) {
+//            $message = "article 文件夹不存在,请先创建";
+//        }else{
+//            $pathDir=date('Ymd');
+//            if(!$this->disk->exists('/article/'.$pathDir)){
+//                $this->disk->makeDirectory('/article/'.$pathDir);
+//            }
+//        }
+//
+//        if($request->file('editormd-image-file')){
+//            $path="uploads/article/".$pathDir;
+//            $pic = $request->file('editormd-image-file');
+//            if($pic->isValid()){
+//                $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
+//                if($this->disk->exists($path.'/'.$newName)){
+//                    $message = "文件名已存在或文件已存在";
+//                }else{
+//                    if($pic->move($path,$newName)){
+//                        $url = asset($path.'/'.$newName);
+//                    }else{
+//                        $message="系统异常，文件保存失败";
+//                    }
+//                }
+//            }else{
+//                $message = "文件无效";
+//            }
+//        }else{
+//            $message="Not File";
+//        }
+//
+//        $data = array(
+//            'success' => empty($message) ? 1 : 0,
+//            'message' => $message,
+//            'url' => !empty($url) ? $url : ''
+//        );
+//
+//        header('Content-Type:application/json;charset=utf8');
+//        exit(json_encode($data));
+//    }
+
     public function uploadimage(Request $request)
     {
         $message='';
-        if (!$this->disk->exists('/article')) {
-            $message = "article 文件夹不存在,请先创建";
-        }else{
-            $pathDir=date('Ymd');
-            if(!$this->disk->exists('/article/'.$pathDir)){
-                $this->disk->makeDirectory('/article/'.$pathDir);
-            }
-        }
+        $useOss = env("USE_OSS",false);
+        if($useOss){
+            //使用阿里云OSS存储
+            $pathDir=date('Y-m-d');
+            if($request->file('editormd-image-file')){
+                $pic = $request->file('editormd-image-file');
+                if($pic->isValid()){
+                    $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
+                    $accessKeyId =env("OSS_KEYID");
+                    $accessKeySecret = env("OSS_KEYSECRET");
+                    $endpoint = env("OSS_ENDPOINT");
+                    $bucket= env("OSS_BUCKET");
+                    $ossUrl = env("OSS_URL");
+                    $object = $pathDir.'/'.$newName;
+                    $filePath = $pic->getPathname();
+                    try{
+                        $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
 
-        if($request->file('editormd-image-file')){
-            $path="uploads/article/".$pathDir;
-            $pic = $request->file('editormd-image-file');
-            if($pic->isValid()){
-                $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
-                if($this->disk->exists($path.'/'.$newName)){
-                    $message = "文件名已存在或文件已存在";
-                }else{
-                    if($pic->move($path,$newName)){
-                        $url = asset($path.'/'.$newName);
-                    }else{
-                        $message="系统异常，文件保存失败";
+                        $ossClient->uploadFile($bucket, $object, $filePath);
+
+                        $url = $ossUrl.'/'.$object;
+                    } catch(OssException $e) {
+                        //printf(__FUNCTION__ . ": FAILED\n");
+                        $message = "上传失败";
                     }
+                }else{
+                    $message = "文件无效";
                 }
             }else{
-                $message = "文件无效";
+                $message="Not File";
             }
+
+            $data = array(
+                'success' => empty($message) ? 1 : 0,
+                'message' => $message,
+                'url' => !empty($url) ? $url : ''
+            );
+
+            header('Content-Type:application/json;charset=utf8');
+            exit(json_encode($data));
         }else{
-            $message="Not File";
+
+            if (!$this->disk->exists('/article')) {
+                $message = "article 文件夹不存在,请先创建";
+            }else{
+                $pathDir=date('Ymd');
+                if(!$this->disk->exists('/article/'.$pathDir)){
+                    $this->disk->makeDirectory('/article/'.$pathDir);
+                }
+            }
+
+            if($request->file('editormd-image-file')){
+                $path="uploads/article/".$pathDir;
+                $pic = $request->file('editormd-image-file');
+                if($pic->isValid()){
+                    $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
+                    if($this->disk->exists($path.'/'.$newName)){
+                        $message = "文件名已存在或文件已存在";
+                    }else{
+                        if($pic->move($path,$newName)){
+                            $url = asset($path.'/'.$newName);
+                        }else{
+                            $message="系统异常，文件保存失败";
+                        }
+                    }
+                }else{
+                    $message = "文件无效";
+                }
+            }else{
+                $message="Not File";
+            }
+
+            $data = array(
+                'success' => empty($message) ? 1 : 0,
+                'message' => $message,
+                'url' => !empty($url) ? $url : ''
+            );
+
+            header('Content-Type:application/json;charset=utf8');
+            exit(json_encode($data));
         }
-
-        $data = array(
-            'success' => empty($message) ? 1 : 0,
-            'message' => $message,
-            'url' => !empty($url) ? $url : ''
-        );
-
-        header('Content-Type:application/json;charset=utf8');
-        exit(json_encode($data));
     }
 
 }
