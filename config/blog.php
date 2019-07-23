@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'aliyun_oss'=>[
+        'use_oss'=>env("USE_OSS",false),
+        'oss_keyid'=>env('OSS_KEYID'),
+        'oss_keysecret'=>env('OSS_KEYSECRET'),
+        'oss_endpoint'=>env('OSS_ENDPOINT'),
+        'oss_bucket'=>env('OSS_BUCKET'),
+        'oss_url'=>env('OSS_URL'),
+    ],
     'uploads' => [
         'storage' => 'upload',
         'webPath' => '/uploads'

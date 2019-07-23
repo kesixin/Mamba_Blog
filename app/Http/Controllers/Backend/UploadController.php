@@ -187,7 +187,7 @@ class UploadController extends Controller
     public function uploadimage(Request $request)
     {
         $message='';
-        $useOss = env("USE_OSS",false);
+        $useOss = config('blog.aliyun_oss.use_oss');
         if($useOss){
             //使用阿里云OSS存储
             $pathDir=date('Y-m-d');
@@ -195,11 +195,11 @@ class UploadController extends Controller
                 $pic = $request->file('editormd-image-file');
                 if($pic->isValid()){
                     $newName=md5(time() . rand(0, 10000)).".".$pic->getClientOriginalExtension();
-                    $accessKeyId =env("OSS_KEYID");
-                    $accessKeySecret = env("OSS_KEYSECRET");
-                    $endpoint = env("OSS_ENDPOINT");
-                    $bucket= env("OSS_BUCKET");
-                    $ossUrl = env("OSS_URL");
+                    $accessKeyId =config("blog.aliyun_oss.oss_keyid");
+                    $accessKeySecret = config("blog.aliyun_oss.oss_keysecret");
+                    $endpoint = config("blog.aliyun_oss.oss_endpoint");
+                    $bucket= config("blog.aliyun_oss.oss_bucket");
+                    $ossUrl = config("blog.aliyun_oss.oss_url");
                     $object = $pathDir.'/'.$newName;
                     $filePath = $pic->getPathname();
                     try{
