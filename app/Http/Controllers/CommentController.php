@@ -43,7 +43,8 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $city = MyFunction::getCity($request->ip());
+        //$city = MyFunction::getCity($request->ip());
+        $city = '';
         $arrData=array(
             'user_id'=>Auth::id() ? Auth::id() : 0,
             'parent_id'=>$request->parent_id ? $request->parent_id : 0,
@@ -53,7 +54,8 @@ class CommentController extends Controller
             'email'=>$request->email,
             'website'=>$request->website,
             'ip'=>$request->ip(),
-            'city'=>$city['region'].' '.$city['city'],
+            //'city'=>$city['region'].' '.$city['city'],
+            'city' => $city,
             'target_name'=>$request->target_name
         );
         $comment=$this->commentServer->store($arrData);
