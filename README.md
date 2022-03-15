@@ -28,12 +28,9 @@
 ### 界面图
 
 
-![](https://bmob-cdn-19897.bmobcloud.com/2019/06/06/e7ec732f402c286b809b1a36f4535f16.png)
-
-![](https://bmob-cdn-19897.bmobcloud.com/2019/06/06/3b48e79840291e3780c12f935e711c55.png)
-
-![](https://bmob-cdn-19897.bmobcloud.com/2019/06/06/dc6e0ab440b98eaf800bb991e02d5b4a.png)
-
-![](https://bmob-cdn-19897.bmobcloud.com/2019/06/06/3d81350440d66f6f80b7b785737eb012.png)
+![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/4d3ce7bb19dec596f99e4dc77f3359b2.png)
+![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/2f2aedd7664ac89e7e2da89e29225a87.png)
+![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/f9f2ef0bd6f643e8d02a9afe60be9575.png)
+![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/265a8b46043c42c3332d3f6bb27a8c20.png)
 
 
