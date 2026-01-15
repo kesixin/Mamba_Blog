@@ -23,7 +23,7 @@
 
 源码地址：[Github](https://github.com/kesixin/Mamba_Blog)
 
-#### 如有安装需要请联系QQ：462369233
+#### 如有安装需要请联系QQ：903363777
 
 ### 界面图
 
