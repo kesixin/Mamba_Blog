@@ -4,14 +4,21 @@
 #### 简介
 * 一个基于Laravel开发，支持markdown语法开源的简易博客。
 
-#### 依赖开源程序
-* LAMP
-* Laravel
-* AdminLTE
-* Bootstrap
-* Editor.md
-* andersao/l5-repository
-* etrepat/baum
+### 功能介绍
+- markdown文章编辑器
+- 文章发布
+- 时间轴
+- 评论功能
+- 浏览数统计
+- 文章分类
+- 文章标签
+- 导航栏自定义
+- 文章评论
+- 关键词
+- 搜索功能
+- 系统基本设置
+- 友情链接
+- 文件上传管理
 
 ### 获取源码
 
@@ -47,7 +54,7 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
-
+### 新建数据库，并导入sql，sql文件在源码目录/database/blog.sql
 ### 修改.env文件配置
 
 ```
@@ -59,10 +66,9 @@ DB_USERNAME= #数据库用户
 DB_PASSWORD= #数据库密码
 ```
 
-### 数据迁移和数据填充
+### 数据填充
 
 ```
-php artisan migrate
 php artisan db:seed --class=UserTableSeeder
 ```
 
@@ -81,7 +87,7 @@ php artisan route:cache  //路由缓存
 * email：test@qq.com
 * password : 123456
 
-#### 博客界面
+### 博客界面
 ![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/4d3ce7bb19dec596f99e4dc77f3359b2.png)
 ![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/2f2aedd7664ac89e7e2da89e29225a87.png)
 ![](https://mamba-blog-images.oss-cn-shanghai.aliyuncs.com/2020-03-06/f9f2ef0bd6f643e8d02a9afe60be9575.png)
